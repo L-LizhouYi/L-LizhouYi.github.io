@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>@Liulang</title>
-        <link>https://example.com/</link>
+        <link>https://blog.eeho.cn/</link>
         <description>Recent content on @Liulang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 08 Jul 2023 09:42:08 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 08 Jul 2023 09:42:08 +0800</lastBuildDate><atom:link href="https://blog.eeho.cn/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo首安装和一些魔改</title>
-        <link>https://example.com/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</link>
+        <link>https://blog.eeho.cn/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</link>
         <pubDate>Sat, 08 Jul 2023 09:42:08 +0800</pubDate>
         
-        <guid>https://example.com/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</guid>
-        <description>&lt;img src="https://example.com/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/hugo-img.png" alt="Featured image of post Hugo首安装和一些魔改" /&gt;Hugo的安装记录 随笔 在这个喧嚣的时代正如在我的关于中写的那样，变得越来越浮躁，并且 还多愁善感、犹豫不决，害怕失去从而对一些新鲜事物却望而却步，直接敲起了退堂鼓。
+        <guid>https://blog.eeho.cn/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</guid>
+        <description>&lt;img src="https://blog.eeho.cn/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/hugo-img.png" alt="Featured image of post Hugo首安装和一些魔改" /&gt;Hugo的安装记录 随笔 在这个喧嚣的时代正如在我的关于中写的那样，变得越来越浮躁，并且 还多愁善感、犹豫不决，害怕失去从而对一些新鲜事物却望而却步，直接敲起了退堂鼓。
 正如薛之谦 《环》中的写的那样 :
 美若天仙 金山银山 依旧只能饱览寂寞景观 填不满大海 喂不饱深渊 摘不到月亮的人说肝肠寸断 不肯太近 不能太远 不敢跳出迷人的舒适圈 然后无限循环
 Emm 所以我就来写Blog了反正 不会有人看见，嘿嘿&amp;hellip;
@@ -24,18 +24,18 @@ Emm 所以我就来写Blog了反正 不会有人看见，嘿嘿&amp;hellip;
         </item>
         <item>
         <title>档案</title>
-        <link>https://example.com/archives/</link>
+        <link>https://blog.eeho.cn/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/archives/</guid>
+        <guid>https://blog.eeho.cn/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>关于</title>
-        <link>https://example.com/%E5%85%B3%E4%BA%8E/</link>
+        <link>https://blog.eeho.cn/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>https://blog.eeho.cn/%E5%85%B3%E4%BA%8E/</guid>
         <description>🎑刘浪 😀我： 身穷志短的屌丝青年一枚，目前还患上了 多愁善感 、犹豫不决 等不治之症，最喜欢的人物就是毛爷爷 尤其是在一张红色的纸上。目前最大的愿望是傍上一个富婆，从此走向人生巅峰。(额这个也是要看命的)。
 🌵我的兴趣爱好: 👨‍💻电子产品
 ✍️写博客
@@ -51,20 +51,20 @@ Python 、 Golang 、PHP 、 Java 、 Js
         </item>
         <item>
         <title>链接</title>
-        <link>https://example.com/%E9%93%BE%E6%8E%A5/</link>
+        <link>https://blog.eeho.cn/%E9%93%BE%E6%8E%A5/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/%E9%93%BE%E6%8E%A5/</guid>
+        <guid>https://blog.eeho.cn/%E9%93%BE%E6%8E%A5/</guid>
         <description>To use this feature, add links section to frontmatter.
 This page&amp;rsquo;s frontmatter:
 1 2 3 4 5 6 7 8 9 links: - title: GitHub description: GitHub is the world&amp;#39;s largest software development platform. website: https://github.com image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png - title: TypeScript description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. website: https://www.typescriptlang.org image: ts-logo-128.jpg image field accepts both local and external images.</description>
         </item>
         <item>
         <title>搜索</title>
-        <link>https://example.com/search/</link>
+        <link>https://blog.eeho.cn/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/search/</guid>
+        <guid>https://blog.eeho.cn/search/</guid>
         <description></description>
         </item>
         

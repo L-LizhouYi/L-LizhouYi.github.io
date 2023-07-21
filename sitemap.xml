@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://example.com/</loc>
+    <loc>https://blog.eeho.cn/</loc>
     <lastmod>2023-07-08T09:42:08+08:00</lastmod>
   </url><url>
-    <loc>https://example.com/categories/</loc>
+    <loc>https://blog.eeho.cn/categories/</loc>
     <lastmod>2023-07-08T09:42:08+08:00</lastmod>
   </url><url>
-    <loc>https://example.com/tags/hugo/</loc>
+    <loc>https://blog.eeho.cn/tags/hugo/</loc>
     <lastmod>2023-07-08T09:42:08+08:00</lastmod>
   </url><url>
-    <loc>https://example.com/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</loc>
+    <loc>https://blog.eeho.cn/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</loc>
     <lastmod>2023-07-08T09:42:08+08:00</lastmod>
   </url><url>
-    <loc>https://example.com/tags/js/</loc>
+    <loc>https://blog.eeho.cn/tags/js/</loc>
     <lastmod>2023-07-08T09:42:08+08:00</lastmod>
   </url><url>
-    <loc>https://example.com/post/</loc>
+    <loc>https://blog.eeho.cn/post/</loc>
     <lastmod>2023-07-08T09:42:08+08:00</lastmod>
   </url><url>
-    <loc>https://example.com/tags/</loc>
+    <loc>https://blog.eeho.cn/tags/</loc>
     <lastmod>2023-07-08T09:42:08+08:00</lastmod>
   </url><url>
-    <loc>https://example.com/categories/%E5%A5%BD%E8%AE%B0%E6%80%A7%E4%B8%8D%E5%A6%82%E7%83%82%E7%AC%94%E5%A4%B4/</loc>
+    <loc>https://blog.eeho.cn/categories/%E5%A5%BD%E8%AE%B0%E6%80%A7%E4%B8%8D%E5%A6%82%E7%83%82%E7%AC%94%E5%A4%B4/</loc>
     <lastmod>2023-07-08T09:42:08+08:00</lastmod>
   </url><url>
-    <loc>https://example.com/page/</loc>
+    <loc>https://blog.eeho.cn/page/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/archives/</loc>
+    <loc>https://blog.eeho.cn/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/categories/test/</loc>
+    <loc>https://blog.eeho.cn/categories/test/</loc>
   </url><url>
-    <loc>https://example.com/%E5%85%B3%E4%BA%8E/</loc>
+    <loc>https://blog.eeho.cn/%E5%85%B3%E4%BA%8E/</loc>
   </url><url>
-    <loc>https://example.com/%E9%93%BE%E6%8E%A5/</loc>
+    <loc>https://blog.eeho.cn/%E9%93%BE%E6%8E%A5/</loc>
   </url><url>
-    <loc>https://example.com/search/</loc>
+    <loc>https://blog.eeho.cn/search/</loc>
   </url>
 </urlset>
