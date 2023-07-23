@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Cloudflare on @Liulang</title>
+        <link>https://blog.eeho.cn/tags/cloudflare/</link>
+        <description>Recent content in Cloudflare on @Liulang</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Sun, 23 Jul 2023 16:54:05 +0800</lastBuildDate><atom:link href="https://blog.eeho.cn/tags/cloudflare/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Xray-Vless-Nginx-Cf_Wall_方案</title>
+        <link>https://blog.eeho.cn/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/</link>
+        <pubDate>Sun, 23 Jul 2023 16:54:05 +0800</pubDate>
+        
+        <guid>https://blog.eeho.cn/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/</guid>
+        <description>&lt;img src="https://blog.eeho.cn/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/b.png" alt="Featured image of post Xray-Vless-Nginx-Cf_Wall_方案" /&gt;想不想看花海盛开 想不想看燕子归来.
+如果一切都回不来 那么我该为了谁而存在.
+&amp;mdash;&amp;mdash; 我用什么把你留住.福禄寿
+准备工作 域名 国外VPS（推荐Debian） Cloudflare 工具链接 Bt (开心版)
+1 curl -sSO http://io.bt.sy/install/install_panel.sh &amp;amp;&amp;amp; bash install_panel.sh X-UI（Xray管理面板）
+1 bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh) 安装部署 安装Bt面板 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ================================================================== Congratulations! Installed successfully! ================================================================== 外网面板地址: http://2401:c080:1000:42b4:5400:4ff:fe84:393c:28778/076bb078 内网面板地址: http://198.13.44.212:28778/076bb078 username: pg4wtwxk password: 823db350 If you cannot access the panel, release the following panel port [28778] in the security group 若无法访问面板，请检查防火墙/安全组是否有放行面板[28778]端口 ================================================================== Time consumed: 10 Minute!</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='想不想看花海盛开 想不想看燕子归来.
+如果一切都回不来 那么我该为了谁而存在.
+&amp;mdash;&amp;mdash; 我用什么把你留住.福禄寿
+准备工作 域名 国外VPS（推荐Debian） Cloudflare 工具链接 Bt (开心版)
+1 curl -sSO http://io.bt.sy/install/install_panel.sh &amp;amp;&amp;amp; bash install_panel.sh X-UI（Xray管理面板）
+1 bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh) 安装部署 安装Bt面板 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ================================================================== Congratulations! Installed successfully! ================================================================== 外网面板地址: http://2401:c080:1000:42b4:5400:4ff:fe84:393c:28778/076bb078 内网面板地址: http://198.13.44.212:28778/076bb078 username: pg4wtwxk password: 823db350 If you cannot access the panel, release the following panel port [28778] in the security group 若无法访问面板，请检查防火墙/安全组是否有放行面板[28778]端口 ================================================================== Time consumed: 10 Minute!'>
+<title>Xray-Vless-Nginx-Cf_Wall_方案</title>
+
+<link rel='canonical' href='https://blog.eeho.cn/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/'>
+
+<link rel="stylesheet" href="/scss/style.min.2a19a0292be9078aabf51133bc792f8b36bb3c9ac7e32b071d9ffd33e7689d7e.css"><meta property='og:title' content='Xray-Vless-Nginx-Cf_Wall_方案'>
+<meta property='og:description' content='想不想看花海盛开 想不想看燕子归来.
+如果一切都回不来 那么我该为了谁而存在.
+&amp;mdash;&amp;mdash; 我用什么把你留住.福禄寿
+准备工作 域名 国外VPS（推荐Debian） Cloudflare 工具链接 Bt (开心版)
+1 curl -sSO http://io.bt.sy/install/install_panel.sh &amp;amp;&amp;amp; bash install_panel.sh X-UI（Xray管理面板）
+1 bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh) 安装部署 安装Bt面板 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ================================================================== Congratulations! Installed successfully! ================================================================== 外网面板地址: http://2401:c080:1000:42b4:5400:4ff:fe84:393c:28778/076bb078 内网面板地址: http://198.13.44.212:28778/076bb078 username: pg4wtwxk password: 823db350 If you cannot access the panel, release the following panel port [28778] in the security group 若无法访问面板，请检查防火墙/安全组是否有放行面板[28778]端口 ================================================================== Time consumed: 10 Minute!'>
+<meta property='og:url' content='https://blog.eeho.cn/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/'>
+<meta property='og:site_name' content='@Liulang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Nginx' /><meta property='article:tag' content='Xray' /><meta property='article:tag' content='Cloudflare' /><meta property='article:published_time' content='2023-07-23T16:54:05&#43;08:00'/><meta property='article:modified_time' content='2023-07-23T16:54:05&#43;08:00'/><meta property='og:image' content='https://blog.eeho.cn/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/b.png' />
+<meta name="twitter:title" content="Xray-Vless-Nginx-Cf_Wall_方案">
+<meta name="twitter:description" content="想不想看花海盛开 想不想看燕子归来.
+如果一切都回不来 那么我该为了谁而存在.
+&amp;mdash;&amp;mdash; 我用什么把你留住.福禄寿
+准备工作 域名 国外VPS（推荐Debian） Cloudflare 工具链接 Bt (开心版)
+1 curl -sSO http://io.bt.sy/install/install_panel.sh &amp;amp;&amp;amp; bash install_panel.sh X-UI（Xray管理面板）
+1 bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh) 安装部署 安装Bt面板 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ================================================================== Congratulations! Installed successfully! ================================================================== 外网面板地址: http://2401:c080:1000:42b4:5400:4ff:fe84:393c:28778/076bb078 内网面板地址: http://198.13.44.212:28778/076bb078 username: pg4wtwxk password: 823db350 If you cannot access the panel, release the following panel port [28778] in the security group 若无法访问面板，请检查防火墙/安全组是否有放行面板[28778]端口 ================================================================== Time consumed: 10 Minute!"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog.eeho.cn/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/b.png' />
+    <link rel="shortcut icon" href="/1.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hudaf350c07a76e109dc9d38357cc911c3_206012_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">@Liulang</a></h1>
+            <h2 class="site-description">宁静致远.✍️</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>档案</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#准备工作">准备工作</a></li>
+    <li><a href="#安装部署">安装部署</a>
+      <ol>
+        <li><a href="#安装bt面板">安装Bt面板</a></li>
+        <li><a href="#安装-x-ui面板">安装 X-ui面板</a></li>
+        <li><a href="#cf绑定域名并开启代理">CF绑定域名并开启代理</a></li>
+        <li><a href="#新建-vless-入站规则">新建 Vless 入站规则</a></li>
+        <li><a href="#创建nginx伪装网站">创建Nginx伪装网站</a></li>
+        <li><a href="#使用nginx代理vless流量">使用Nginx代理Vless流量</a></li>
+        <li><a href="#部署cf源服务器证书-开启网站-https">部署CF源服务器证书 开启网站 HTTPS</a></li>
+      </ol>
+    </li>
+    <li><a href="#连接节点测试">连接节点测试</a></li>
+    <li><a href="#一些细节的优化">一些细节的优化</a>
+      <ol>
+        <li><a href="#修改时区">修改时区</a></li>
+        <li><a href="#端口安全">端口安全</a></li>
+        <li><a href="#nginx-日志显示-真实-ip">Nginx 日志显示 真实 IP</a></li>
+        <li><a href="#xray-日志">Xray 日志</a></li>
+        <li><a href="#cloudflarest-优选-ip">CloudflareST 优选 IP</a></li>
+        <li><a href="#日志分析脚本python待更新">日志分析脚本（Python）待更新&hellip;</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/">
+                <img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/b_hu3b605a4ed6ca89cc85d27885e63c16e0_44967_800x0_resize_box_3.png"
+                        srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/b_hu3b605a4ed6ca89cc85d27885e63c16e0_44967_800x0_resize_box_3.png 800w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/b_hu3b605a4ed6ca89cc85d27885e63c16e0_44967_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="289" 
+                        loading="lazy"
+                        alt="Featured image of post Xray-Vless-Nginx-Cf_Wall_方案" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%A5%BD%E8%AE%B0%E6%80%A7%E4%B8%8D%E5%A6%82%E7%83%82%E7%AC%94%E5%A4%B4/" >
+                好记性不如烂笔头
+            </a>
+        
+            <a href="/categories/%E7%A7%91%E5%AD%A6%E6%B0%91%E4%B8%BB%E5%AF%8C%E5%BC%BA/" >
+                科学民主富强
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/">Xray-Vless-Nginx-Cf_Wall_方案</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 23, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>想不想看花海盛开 想不想看燕子归来.</p>
+<p>如果一切都回不来 那么我该为了谁而存在.</p>
+<p>&mdash;&mdash; 我用什么把你留住.福禄寿</p>
+</blockquote>
+<h2 id="准备工作">准备工作</h2>
+<ol>
+<li>域名</li>
+<li>国外VPS（推荐Debian）</li>
+<li>Cloudflare</li>
+<li>工具链接</li>
+</ol>
+<p>Bt (开心版)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -sSO http://io.bt.sy/install/install_panel.sh <span class="o">&amp;&amp;</span> bash install_panel.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>X-UI（Xray管理面板）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bash &lt;<span class="o">(</span>curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装部署">安装部署</h2>
+<h3 id="安装bt面板">安装Bt面板</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">==================================================================</span>
+</span></span><span class="line"><span class="cl">Congratulations! Installed successfully!
+</span></span><span class="line"><span class="cl"><span class="o">==================================================================</span>
+</span></span><span class="line"><span class="cl">外网面板地址: http://2401:c080:1000:42b4:5400:4ff:fe84:393c:28778/076bb078
+</span></span><span class="line"><span class="cl">内网面板地址: http://198.13.44.212:28778/076bb078
+</span></span><span class="line"><span class="cl">username: pg4wtwxk
+</span></span><span class="line"><span class="cl">password: 823db350
+</span></span><span class="line"><span class="cl">If you cannot access the panel,
+</span></span><span class="line"><span class="cl">release the following panel port <span class="o">[</span>28778<span class="o">]</span> in the security group
+</span></span><span class="line"><span class="cl">若无法访问面板，请检查防火墙/安全组是否有放行面板<span class="o">[</span>28778<span class="o">]</span>端口
+</span></span><span class="line"><span class="cl"><span class="o">==================================================================</span>
+</span></span><span class="line"><span class="cl">Time consumed: <span class="m">10</span> Minute!
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">已经安装完毕，欢迎使用！ 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行环境只安装 Nginx 即可
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690084406989-bde10917-c2ab-4efe-8932-d120cbe992aa.png"
+	width="2560"
+	height="1289"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690084406989-bde10917-c2ab-4efe-8932-d120cbe992aa_hu683221875d3e168274c90e51244d652a_182372_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690084406989-bde10917-c2ab-4efe-8932-d120cbe992aa_hu683221875d3e168274c90e51244d652a_182372_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="198"
+		data-flex-basis="476px"
+	
+></p>
+<h3 id="安装-x-ui面板">安装 X-ui面板</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">出于安全考虑，安装/更新完成后需要强制修改端口与账户密码
+</span></span><span class="line"><span class="cl">确认是否继续?<span class="o">[</span>y/n<span class="o">]</span>:y
+</span></span><span class="line"><span class="cl">请设置您的账户名:xray
+</span></span><span class="line"><span class="cl">您的账户名将设定为:xray
+</span></span><span class="line"><span class="cl">请设置您的账户密码:xray
+</span></span><span class="line"><span class="cl">您的账户密码将设定为:xray
+</span></span><span class="line"><span class="cl">请设置面板访问端口:9999
+</span></span><span class="line"><span class="cl">您的面板访问端口将设定为:9999
+</span></span><span class="line"><span class="cl">确认设定,设定中
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> username and password success
+</span></span><span class="line"><span class="cl">账户密码设定完成
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> port <span class="m">9999</span> success面板端口设定完成
+</span></span><span class="line"><span class="cl">x-ui v0.3.2 安装完成，面板已启动
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在Bt中放行x-ui面板端口
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690085734757-cdb467c1-4640-4a9f-ab60-7ca06eb07555.png"
+	width="1757"
+	height="919"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690085734757-cdb467c1-4640-4a9f-ab60-7ca06eb07555_huf190bb78136f3a3140212bbfa4549175_102627_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690085734757-cdb467c1-4640-4a9f-ab60-7ca06eb07555_huf190bb78136f3a3140212bbfa4549175_102627_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="191"
+		data-flex-basis="458px"
+	
+></p>
+<h3 id="cf绑定域名并开启代理">CF绑定域名并开启代理</h3>
+<p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690085306058-d1cc03fc-a076-45b9-b69b-5583886bbd12.png"
+	width="1265"
+	height="578"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690085306058-d1cc03fc-a076-45b9-b69b-5583886bbd12_hu5fbe1a377f70a9688f1835e1978c0821_51985_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690085306058-d1cc03fc-a076-45b9-b69b-5583886bbd12_hu5fbe1a377f70a9688f1835e1978c0821_51985_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="218"
+		data-flex-basis="525px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690085439140-da3b3801-10b2-4ab3-9dd2-d8da06a9f725.png"
+	width="728"
+	height="414"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690085439140-da3b3801-10b2-4ab3-9dd2-d8da06a9f725_hu8168b0506da66e395a54851a706e36e1_35862_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690085439140-da3b3801-10b2-4ab3-9dd2-d8da06a9f725_hu8168b0506da66e395a54851a706e36e1_35862_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="175"
+		data-flex-basis="422px"
+	
+></p>
+<h3 id="新建-vless-入站规则">新建 Vless 入站规则</h3>
+<p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088488484-fe863179-dc4e-4dfc-961c-bf2ca1823230.png"
+	width="1757"
+	height="919"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088488484-fe863179-dc4e-4dfc-961c-bf2ca1823230_hud830f48c4f8aee812e9d9235140a60cd_59635_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088488484-fe863179-dc4e-4dfc-961c-bf2ca1823230_hud830f48c4f8aee812e9d9235140a60cd_59635_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="191"
+		data-flex-basis="458px"
+	
+></p>
+<p>因为使用套用 Nginx 所以在此处关闭 tls
+防火墙放行 9000 端口使用浏览器 访问 <a class="link" href="http://198.13.44.212:9000/vless"  target="_blank" rel="noopener"
+    >http://198.13.44.212:9000/vless</a> 查看是否创建成功
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690089152665-798a0441-ef81-4650-846a-a46cc7b19183.png"
+	width="1932"
+	height="994"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690089152665-798a0441-ef81-4650-846a-a46cc7b19183_hu2a667203d9b96adda2421bce5e7c3dc7_115379_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690089152665-798a0441-ef81-4650-846a-a46cc7b19183_hu2a667203d9b96adda2421bce5e7c3dc7_115379_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="466px"
+	
+></p>
+<h3 id="创建nginx伪装网站">创建Nginx伪装网站</h3>
+<p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088609370-0005d358-7d0f-4a51-8d82-57d6c739e24d.png"
+	width="1757"
+	height="919"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088609370-0005d358-7d0f-4a51-8d82-57d6c739e24d_hu48d6bffac8faea1232cbff253adc211a_100369_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088609370-0005d358-7d0f-4a51-8d82-57d6c739e24d_hu48d6bffac8faea1232cbff253adc211a_100369_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="191"
+		data-flex-basis="458px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088676509-d8732880-f54b-42ab-b41b-7d8455176cab.png"
+	width="1933"
+	height="995"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088676509-d8732880-f54b-42ab-b41b-7d8455176cab_hu9a362576b143ad4d2057ccc96b085889_52456_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088676509-d8732880-f54b-42ab-b41b-7d8455176cab_hu9a362576b143ad4d2057ccc96b085889_52456_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="466px"
+	
+></p>
+<p>使用Nginx的反向代理 伪装任意网站
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088855931-682f6850-7aec-4cd5-9d6d-483efc3e92a5.png"
+	width="1934"
+	height="919"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088855931-682f6850-7aec-4cd5-9d6d-483efc3e92a5_hu2bc17e76fe766ee858fca0a9dfc2cec4_147592_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088855931-682f6850-7aec-4cd5-9d6d-483efc3e92a5_hu2bc17e76fe766ee858fca0a9dfc2cec4_147592_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="210"
+		data-flex-basis="505px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088873897-f643320b-93fd-493f-b945-faf949fa0209.png"
+	width="1936"
+	height="996"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088873897-f643320b-93fd-493f-b945-faf949fa0209_hu051c6103ee28d78a5c355e82945df096_487195_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690088873897-f643320b-93fd-493f-b945-faf949fa0209_hu051c6103ee28d78a5c355e82945df096_487195_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="466px"
+	
+></p>
+<p>访问网站，代理页面访问正常</p>
+<h3 id="使用nginx代理vless流量">使用Nginx代理Vless流量</h3>
+<p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690089711662-7fe49543-ad02-4f67-9bde-fa488caa64d1.png"
+	width="1934"
+	height="919"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690089711662-7fe49543-ad02-4f67-9bde-fa488caa64d1_hu2bc17e76fe766ee858fca0a9dfc2cec4_148652_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690089711662-7fe49543-ad02-4f67-9bde-fa488caa64d1_hu2bc17e76fe766ee858fca0a9dfc2cec4_148652_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="210"
+		data-flex-basis="505px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690089746369-e185c9c1-1718-4b19-9b6b-c97873446e10.png"
+	width="1934"
+	height="919"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690089746369-e185c9c1-1718-4b19-9b6b-c97873446e10_hu2bc17e76fe766ee858fca0a9dfc2cec4_163342_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690089746369-e185c9c1-1718-4b19-9b6b-c97873446e10_hu2bc17e76fe766ee858fca0a9dfc2cec4_163342_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="210"
+		data-flex-basis="505px"
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#原配置
+</span></span><span class="line"><span class="cl">proxy_pass http://127.0.0.1:9000/vless/; 
+</span></span><span class="line"><span class="cl">#修改后
+</span></span><span class="line"><span class="cl">proxy_pass http://127.0.0.1:9000/vless; 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090663641-eb98dca7-6a6c-4f51-a98f-de0b4249f18b.png"
+	width="1928"
+	height="994"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090663641-eb98dca7-6a6c-4f51-a98f-de0b4249f18b_huf12c60471e03ac211784d356d95de4e6_119426_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090663641-eb98dca7-6a6c-4f51-a98f-de0b4249f18b_huf12c60471e03ac211784d356d95de4e6_119426_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="465px"
+	
+></p>
+<p>代理成功</p>
+<h3 id="部署cf源服务器证书-开启网站-https">部署CF源服务器证书 开启网站 HTTPS</h3>
+<p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090814122-b48e738a-397f-4fac-a333-7765d44c1ba6.png"
+	width="1706"
+	height="904"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090814122-b48e738a-397f-4fac-a333-7765d44c1ba6_hua9830dbfe37d5435c903076735bee411_81371_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090814122-b48e738a-397f-4fac-a333-7765d44c1ba6_hua9830dbfe37d5435c903076735bee411_81371_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="188"
+		data-flex-basis="452px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090928733-7bbbbe89-8184-4d94-9e29-4b624e44b62e.png"
+	width="794"
+	height="776"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090928733-7bbbbe89-8184-4d94-9e29-4b624e44b62e_hu38499c56852f0eddc124b44659d9a24e_103426_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090928733-7bbbbe89-8184-4d94-9e29-4b624e44b62e_hu38499c56852f0eddc124b44659d9a24e_103426_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="102"
+		data-flex-basis="245px"
+	
+></p>
+<p>访问 <a class="link" href="https://xray.sundayssr.top/vless"  target="_blank" rel="noopener"
+    >https://xray.sundayssr.top/vless</a> 测试
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090988560-225aca19-b1f2-4a68-8d68-edc27cdd4e01.png"
+	width="1937"
+	height="1000"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090988560-225aca19-b1f2-4a68-8d68-edc27cdd4e01_hu223d9f7ecf3d399c58f949289fcd2800_146836_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690090988560-225aca19-b1f2-4a68-8d68-edc27cdd4e01_hu223d9f7ecf3d399c58f949289fcd2800_146836_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="464px"
+	
+></p>
+<h2 id="连接节点测试">连接节点测试</h2>
+<p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091243109-688f82f7-179e-4324-8a38-6be1fcc0a476.png"
+	width="731"
+	height="585"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091243109-688f82f7-179e-4324-8a38-6be1fcc0a476_hu334f8cc8ae2fd0326dbd79bc9c5d48e0_18654_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091243109-688f82f7-179e-4324-8a38-6be1fcc0a476_hu334f8cc8ae2fd0326dbd79bc9c5d48e0_18654_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="124"
+		data-flex-basis="299px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091367890-367a4f04-2e5c-43d8-8dea-72dc6ae75952.png"
+	width="1354"
+	height="457"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091367890-367a4f04-2e5c-43d8-8dea-72dc6ae75952_hu2e42c56ef3b2dad0585bef93cdd85d33_23044_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091367890-367a4f04-2e5c-43d8-8dea-72dc6ae75952_hu2e42c56ef3b2dad0585bef93cdd85d33_23044_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="296"
+		data-flex-basis="711px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091490275-1d08a44d-65ff-440c-b5cd-1d682b39655e.png"
+	width="1934"
+	height="919"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091490275-1d08a44d-65ff-440c-b5cd-1d682b39655e_hubaab142b197b9cd2917b9d49b43f7988_33761_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091490275-1d08a44d-65ff-440c-b5cd-1d682b39655e_hubaab142b197b9cd2917b9d49b43f7988_33761_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="210"
+		data-flex-basis="505px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091535214-f340686b-58ba-4213-a8a4-06a3bc5c00b4.png"
+	width="1934"
+	height="919"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091535214-f340686b-58ba-4213-a8a4-06a3bc5c00b4_hu768101a414d05dcfe340e33962c6c3fc_1173273_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690091535214-f340686b-58ba-4213-a8a4-06a3bc5c00b4_hu768101a414d05dcfe340e33962c6c3fc_1173273_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="210"
+		data-flex-basis="505px"
+	
+></p>
+<p>到此 节点就已经搭建完成</p>
+<hr>
+<h2 id="一些细节的优化">一些细节的优化</h2>
+<h3 id="修改时区">修改时区</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#查看并设置时区</span>
+</span></span><span class="line"><span class="cl">timedatectl list-timezones
+</span></span><span class="line"><span class="cl">timedatectl set-timezone Asia/Shanghai
+</span></span><span class="line"><span class="cl">timedatectl
+</span></span><span class="line"><span class="cl">          
+</span></span><span class="line"><span class="cl"><span class="c1">#同步时间        </span>
+</span></span><span class="line"><span class="cl">apt install ntpdate -y
+</span></span><span class="line"><span class="cl">ntpdate pool.ntp.org
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="端口安全">端口安全</h3>
+<p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092059533-3f4f7652-6789-4032-b191-fb555633d1c6.png"
+	width="1934"
+	height="919"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092059533-3f4f7652-6789-4032-b191-fb555633d1c6_huad1cd5170118cbc9f18e774fb579d4ff_98782_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092059533-3f4f7652-6789-4032-b191-fb555633d1c6_huad1cd5170118cbc9f18e774fb579d4ff_98782_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="210"
+		data-flex-basis="505px"
+	
+></p>
+<p>目前为止 为了防止被扫描端口，可以将 9999 和 9000 端口禁用，9000 已经被 Nginx代理 直接 禁用，9999 是x-ui 面板端口可也以使用同样的方法将其进行代理。</p>
+<ol>
+<li>修改 x-ui的面板设置</li>
+</ol>
+<p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092282450-f2539336-0bd0-450b-8cba-d3d94c889a2a.png"
+	width="1936"
+	height="913"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092282450-f2539336-0bd0-450b-8cba-d3d94c889a2a_hu46fe503390afed352f6ca5801a0d4c82_47839_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092282450-f2539336-0bd0-450b-8cba-d3d94c889a2a_hu46fe503390afed352f6ca5801a0d4c82_47839_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="212"
+		data-flex-basis="508px"
+	
+></p>
+<ol start="2">
+<li>配置反向代理</li>
+</ol>
+<p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092344947-827e66a0-00d0-4fa4-880b-293e65da5c25.png"
+	width="802"
+	height="780"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092344947-827e66a0-00d0-4fa4-880b-293e65da5c25_hu9adbac98da5e1389da605f53ff277bb6_79320_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092344947-827e66a0-00d0-4fa4-880b-293e65da5c25_hu9adbac98da5e1389da605f53ff277bb6_79320_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="102"
+		data-flex-basis="246px"
+	
+></p>
+<p>到此便可以使用 <a class="link" href="https://xray.sundayssr.top/xui/"  target="_blank" rel="noopener"
+    >https://xray.sundayssr.top/xui/</a> 来管理面板
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092450730-f40953fe-cd87-4920-a54f-c1d31001e35c.png"
+	width="1715"
+	height="348"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092450730-f40953fe-cd87-4920-a54f-c1d31001e35c_hu2e558d9cf59a490b27c9d4b96072827b_34967_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690092450730-f40953fe-cd87-4920-a54f-c1d31001e35c_hu2e558d9cf59a490b27c9d4b96072827b_34967_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="492"
+		data-flex-basis="1182px"
+	
+>
+规则保留默认即可</p>
+<h3 id="nginx-日志显示-真实-ip">Nginx 日志显示 真实 IP</h3>
+<p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690093610257-a76ea83e-c246-4fe4-ac51-4a661d7255c6.png"
+	width="786"
+	height="768"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690093610257-a76ea83e-c246-4fe4-ac51-4a661d7255c6_hue271a4418d98c598062dc4209a631a80_126191_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690093610257-a76ea83e-c246-4fe4-ac51-4a661d7255c6_hue271a4418d98c598062dc4209a631a80_126191_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="102"
+		data-flex-basis="245px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690093637564-17648fc0-a592-4aa8-bb48-e78288fca6df.png"
+	width="767"
+	height="214"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690093637564-17648fc0-a592-4aa8-bb48-e78288fca6df_huf8bf6138447acd66d0d144b2022ea215_13763_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690093637564-17648fc0-a592-4aa8-bb48-e78288fca6df_huf8bf6138447acd66d0d144b2022ea215_13763_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="358"
+		data-flex-basis="860px"
+	
+></p>
+<p>由于网站套用了CF的 CDN导致在查看 Nginx 日志的时候，现实的全部都是 CF 的 IP 地址，通过以下配置可以解决这个问题
+首先确定 Nginx 编译了 with-http_realip_module 这个模块</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nginx -V
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">configure arguments: --user<span class="o">=</span>www --group<span class="o">=</span>www --prefix<span class="o">=</span>/www/server/nginx --add-module<span class="o">=</span>/www/server/nginx/src/ngx_devel_kit --add-module<span class="o">=</span>/www/server/nginx/src/lua_nginx_module --add-module<span class="o">=</span>/www/server/nginx/src/ngx_cache_purge --add-module<span class="o">=</span>/www/server/nginx/src/nginx-sticky-module --with-openssl<span class="o">=</span>/www/server/nginx/src/openssl --with-pcre<span class="o">=</span>pcre-8.43 --with-http_v2_module --with-stream --with-stream_ssl_module --with-stream_ssl_preread_module --with-http_stub_status_module --with-http_ssl_module --with-http_image_filter_module --with-http_gzip_static_module --with-http_gunzip_module --with-ipv6 --with-http_sub_module --with-http_flv_module --with-http_addition_module --with-http_realip_module --with-http_mp4_module --add-module<span class="o">=</span>/www/server/nginx/src/ngx_http_substitutions_filter_module-master --with-ld-opt<span class="o">=</span>-Wl,-E --with-cc-opt<span class="o">=</span>-Wno-error --with-ld-opt<span class="o">=</span>-ljemalloc --with-http_dav_module --add-module<span class="o">=</span>/www/server/nginx/src/nginx-dav-ext-module
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后创建 <code>/www/server/nginx/conf/cloudflare_ip.conf</code> 文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set_real_ip_from 103.21.244.0/22;
+</span></span><span class="line"><span class="cl">set_real_ip_from 103.22.200.0/22;
+</span></span><span class="line"><span class="cl">set_real_ip_from 103.31.4.0/22;
+</span></span><span class="line"><span class="cl">set_real_ip_from 104.16.0.0/12;
+</span></span><span class="line"><span class="cl">set_real_ip_from 108.162.192.0/18;
+</span></span><span class="line"><span class="cl">set_real_ip_from 131.0.72.0/22;
+</span></span><span class="line"><span class="cl">set_real_ip_from 141.101.64.0/18;
+</span></span><span class="line"><span class="cl">set_real_ip_from 162.158.0.0/15;
+</span></span><span class="line"><span class="cl">set_real_ip_from 172.64.0.0/13;
+</span></span><span class="line"><span class="cl">set_real_ip_from 173.245.48.0/20;
+</span></span><span class="line"><span class="cl">set_real_ip_from 188.114.96.0/20;
+</span></span><span class="line"><span class="cl">set_real_ip_from 190.93.240.0/20;
+</span></span><span class="line"><span class="cl">set_real_ip_from 197.234.240.0/22;
+</span></span><span class="line"><span class="cl">set_real_ip_from 198.41.128.0/17;
+</span></span><span class="line"><span class="cl">set_real_ip_from 2400:cb00::/32;
+</span></span><span class="line"><span class="cl">set_real_ip_from 2606:4700::/32;
+</span></span><span class="line"><span class="cl">set_real_ip_from 2803:f800::/32;
+</span></span><span class="line"><span class="cl">set_real_ip_from 2405:b500::/32;
+</span></span><span class="line"><span class="cl">set_real_ip_from 2405:8100::/32;
+</span></span><span class="line"><span class="cl">set_real_ip_from 2c0f:f248::/32;
+</span></span><span class="line"><span class="cl">set_real_ip_from 2a06:98c0::/29;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">real_ip_header CF-Connecting-IP;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在Nginx配置文件中引用
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690099441140-fa7c663a-990f-4b6c-8529-32f157d682f9.png"
+	width="670"
+	height="607"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690099441140-fa7c663a-990f-4b6c-8529-32f157d682f9_huc7d7ef56911f47f4c183c6d0e2298628_47447_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690099441140-fa7c663a-990f-4b6c-8529-32f157d682f9_huc7d7ef56911f47f4c183c6d0e2298628_47447_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="110"
+		data-flex-basis="264px"
+	
+></p>
+<p>最后使用 <code>nginx -s reload </code>重载配置文件即可
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690099709965-be6537f0-0713-4a8e-9d57-a96af25f91d8.png"
+	width="1057"
+	height="700"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690099709965-be6537f0-0713-4a8e-9d57-a96af25f91d8_hu5ea028d1ba0b1992acd0385261fb4cb9_32938_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690099709965-be6537f0-0713-4a8e-9d57-a96af25f91d8_hu5ea028d1ba0b1992acd0385261fb4cb9_32938_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1690099705.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="151"
+		data-flex-basis="362px"
+	
+></p>
+<p>配合Bt的网站监控报表可查询归属地等信息.</p>
+<h3 id="xray-日志">Xray 日志</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#创建日志文件夹</span>
+</span></span><span class="line"><span class="cl">mkdir /var/log/xray/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;log&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;access&#34;</span><span class="p">:</span> <span class="s2">&#34;/var/log/xray/access.log&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;error&#34;</span><span class="p">:</span> <span class="s2">&#34;/var/log/xray/error.log&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;loglevel&#34;</span><span class="p">:</span> <span class="s2">&#34;warning&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;dnsLog&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="err">,</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690097484368-24e4a4f6-264f-4902-b940-2ef98ad39ede.png"
+	width="1933"
+	height="448"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690097484368-24e4a4f6-264f-4902-b940-2ef98ad39ede_hu89565021dbe45085ae29c65dc8560668_33834_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690097484368-24e4a4f6-264f-4902-b940-2ef98ad39ede_hu89565021dbe45085ae29c65dc8560668_33834_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="431"
+		data-flex-basis="1035px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690099884551-51649ff4-273c-44ef-9794-f588d8799a64.png"
+	width="900"
+	height="250"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690099884551-51649ff4-273c-44ef-9794-f588d8799a64_hu6e68676c5e5c30feab46bd9ba9ebc0b8_35762_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690099884551-51649ff4-273c-44ef-9794-f588d8799a64_hu6e68676c5e5c30feab46bd9ba9ebc0b8_35762_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="360"
+		data-flex-basis="864px"
+	
+></p>
+<p>注：要想Xray日志的真实IP是根据Nginx显示的，所以Nginx显示正确 Xray才会显示正确</p>
+<h3 id="cloudflarest-优选-ip">CloudflareST 优选 IP</h3>
+<blockquote>
+<p><a class="link" href="https://github.com/XIU2/CloudflareSpeedTest"  target="_blank" rel="noopener"
+    >https://github.com/XIU2/CloudflareSpeedTest</a></p>
+</blockquote>
+<p>使用Cf的CDN后 由于各种原因域名直接解析的IP可能不是距离最近最优的，CloudflareST可以帮助我们解决这个问题
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690100595845-d7bbab7e-be26-4659-b8ef-02e16c8d3808.png"
+	width="1110"
+	height="623"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690100595845-d7bbab7e-be26-4659-b8ef-02e16c8d3808_hufe3cebe67378aec14a066fdf19b414b7_65968_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690100595845-d7bbab7e-be26-4659-b8ef-02e16c8d3808_hufe3cebe67378aec14a066fdf19b414b7_65968_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="427px"
+	
+></p>
+<p>可以看到 CloudflareST 已经帮我们选出了低延迟的 CF_IP 但是在测速的时候却没有下载速度，这个问题作者也在Github进行了回复。</p>
+<blockquote>
+<p><a class="link" href="https://github.com/XIU2/CloudflareSpeedTest/issues/168"  target="_blank" rel="noopener"
+    >https://github.com/XIU2/CloudflareSpeedTest/issues/168</a></p>
+</blockquote>
+<p>自用的话可以通过 VPS 创建测速文件进行解决这个问题
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101426261-1c660a53-ac67-4c4e-8859-48b2ed5f5607.png"
+	width="1686"
+	height="685"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101426261-1c660a53-ac67-4c4e-8859-48b2ed5f5607_hu3c73c65ee4873f7217be4e1a3a4747e5_72043_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101426261-1c660a53-ac67-4c4e-8859-48b2ed5f5607_hu3c73c65ee4873f7217be4e1a3a4747e5_72043_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="246"
+		data-flex-basis="590px"
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/www/wwwroot/xray.sundayssr.top/cf/100 <span class="nv">bs</span><span class="o">=</span>1K <span class="nv">count</span><span class="o">=</span><span class="m">102400</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/www/wwwroot/xray.sundayssr.top/cf/200 <span class="nv">bs</span><span class="o">=</span>1K <span class="nv">count</span><span class="o">=</span><span class="m">204800</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改网站的反向代理配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#cf_speedtest_file</span>
+</span></span><span class="line"><span class="cl">location /cf
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  root /www/wwwroot/xray.sundayssr.top<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  autoindex on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  autoindex_exact_size off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  autoindex_localtime on<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101617244-c9f266a0-c52b-496f-9b27-cd517241d3b5.png"
+	width="788"
+	height="770"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101617244-c9f266a0-c52b-496f-9b27-cd517241d3b5_hu502841a0f856b17c07a6c28ab65051c3_76356_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101617244-c9f266a0-c52b-496f-9b27-cd517241d3b5_hu502841a0f856b17c07a6c28ab65051c3_76356_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="102"
+		data-flex-basis="245px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101719110-d02f0144-3289-4a50-97ba-25d53310f655.png"
+	width="1909"
+	height="927"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101719110-d02f0144-3289-4a50-97ba-25d53310f655_huaccccfe3d5e308b6a778a1ecab19babe_66682_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101719110-d02f0144-3289-4a50-97ba-25d53310f655_huaccccfe3d5e308b6a778a1ecab19babe_66682_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="205"
+		data-flex-basis="494px"
+	
+></p>
+<p>使用 <code>CloudflareST</code> 配合 <code>-url</code> 参数 测试即可
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101981256-70f8c752-80c2-4286-9aa4-7bc0e07dc277.png"
+	width="1109"
+	height="623"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101981256-70f8c752-80c2-4286-9aa4-7bc0e07dc277_hu5971f18c07bc1fe23fec76a939a2cec2_58973_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690101981256-70f8c752-80c2-4286-9aa4-7bc0e07dc277_hu5971f18c07bc1fe23fec76a939a2cec2_58973_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="427px"
+	
+>
+<img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690102013735-2aa65581-227e-4ea8-a422-c8caefc1a39e.png"
+	width="729"
+	height="592"
+	srcset="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690102013735-2aa65581-227e-4ea8-a422-c8caefc1a39e_hudf20ec121219b3b5b3cbb4d3279b3f55_18041_480x0_resize_box_3.png 480w, /p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/1690102013735-2aa65581-227e-4ea8-a422-c8caefc1a39e_hudf20ec121219b3b5b3cbb4d3279b3f55_18041_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="123"
+		data-flex-basis="295px"
+	
+></p>
+<p>替换此处IP即可.</p>
+<h3 id="日志分析脚本python待更新">日志分析脚本（Python）待更新&hellip;</h3>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/nginx/">Nginx</a>
+        
+            <a href="/tags/xray/">Xray</a>
+        
+            <a href="/tags/cloudflare/">Cloudflare</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/">
+        
+        
+            <div class="article-image">
+                <img src="/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/hugo-img.32c54fc74438355beda0fb01c0229453_hu54f74ce482ea03416e0989886f9a9743_55808_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Hugo首安装和一些魔改"
+                        
+                        data-hash="md5-MsVPx0Q4NVvtoPsBwCKUUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo首安装和一些魔改</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 @Liulang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计 • 由 Liulang 用❤️魔改
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+
+
+
+<link rel="stylesheet" type="text/css" href="/fonts/font.css">
+
+<style type="text/css">
+    body {
+         
+    };
+</style>
+
+    </body>
+</html>
