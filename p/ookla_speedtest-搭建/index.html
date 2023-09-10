@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='让我仔细看看你的模样 倒数着最后的谢幕时光 我的白马儿呀你慢些跑啊 这一次没有我带你回家 —— 马.福禄寿
+环境准备 Python3 服务器 &amp;lt;系统不限&amp;gt; 域名 SSL证书 &amp;lt;Let&amp;rsquo;s Encrypt 泛域名&amp;gt; Ookla_Speedtest_Flask 点我跳转
+安装部署 拉取项目 建议使用 Git 命令 Clone
+1 git clone https://github.com/L-LizhouYi/Ookla_Speedtest_Flask.git 安装依赖库 1 2 cd Ookla_Speedtest_Flask python3 -m pip install -r requirements.txt 启动服务 启动服务并在浏览器中访问
+访问站点后会自动创建数据库，但由于数据库中没有测速节点，所以页面就会显示无法连接。
+使用 sqlite3 命令添加一条节点，节点可以去项目页面获取。
+1 INSERT INTO &amp;#34;main&amp;#34;.&amp;#34;speedtest_servers&amp;#34;(&amp;#34;id&amp;#34;, &amp;#34;sponsor&amp;#34;, &amp;#34;name&amp;#34;, &amp;#34;host&amp;#34;, &amp;#34;url&amp;#34;, &amp;#34;country&amp;#34;, &amp;#34;cc&amp;#34;, &amp;#34;lat&amp;#34;, &amp;#34;lon&amp;#34;, &amp;#34;distance&amp;#34;, &amp;#34;preferred&amp;#34;, &amp;#34;https_functional&amp;#34;, &amp;#34;force_ping_select&amp;#34;, &amp;#34;show&amp;#34;, &amp;#34;internal&amp;#34;) VALUES (1, &amp;#39;天津电信&amp;#39;, &amp;#39;天津&amp;#39;, &amp;#39;tjrate.tjtele.com.prod.hosts.ooklaserver.net:8080&amp;#39;, &amp;#39;http://tjrate.tjtele.com:8080/speedtest/upload.php&amp;#39;, &amp;#39;China&amp;#39;, &amp;#39;CN&amp;#39;, 0.'>
+<title>Ookla_SpeedTest 搭建</title>
+
+<link rel='canonical' href='https://blog.eeho.cn/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/'>
+
+<link rel="stylesheet" href="/scss/style.min.2a19a0292be9078aabf51133bc792f8b36bb3c9ac7e32b071d9ffd33e7689d7e.css"><meta property='og:title' content='Ookla_SpeedTest 搭建'>
+<meta property='og:description' content='让我仔细看看你的模样 倒数着最后的谢幕时光 我的白马儿呀你慢些跑啊 这一次没有我带你回家 —— 马.福禄寿
+环境准备 Python3 服务器 &amp;lt;系统不限&amp;gt; 域名 SSL证书 &amp;lt;Let&amp;rsquo;s Encrypt 泛域名&amp;gt; Ookla_Speedtest_Flask 点我跳转
+安装部署 拉取项目 建议使用 Git 命令 Clone
+1 git clone https://github.com/L-LizhouYi/Ookla_Speedtest_Flask.git 安装依赖库 1 2 cd Ookla_Speedtest_Flask python3 -m pip install -r requirements.txt 启动服务 启动服务并在浏览器中访问
+访问站点后会自动创建数据库，但由于数据库中没有测速节点，所以页面就会显示无法连接。
+使用 sqlite3 命令添加一条节点，节点可以去项目页面获取。
+1 INSERT INTO &amp;#34;main&amp;#34;.&amp;#34;speedtest_servers&amp;#34;(&amp;#34;id&amp;#34;, &amp;#34;sponsor&amp;#34;, &amp;#34;name&amp;#34;, &amp;#34;host&amp;#34;, &amp;#34;url&amp;#34;, &amp;#34;country&amp;#34;, &amp;#34;cc&amp;#34;, &amp;#34;lat&amp;#34;, &amp;#34;lon&amp;#34;, &amp;#34;distance&amp;#34;, &amp;#34;preferred&amp;#34;, &amp;#34;https_functional&amp;#34;, &amp;#34;force_ping_select&amp;#34;, &amp;#34;show&amp;#34;, &amp;#34;internal&amp;#34;) VALUES (1, &amp;#39;天津电信&amp;#39;, &amp;#39;天津&amp;#39;, &amp;#39;tjrate.tjtele.com.prod.hosts.ooklaserver.net:8080&amp;#39;, &amp;#39;http://tjrate.tjtele.com:8080/speedtest/upload.php&amp;#39;, &amp;#39;China&amp;#39;, &amp;#39;CN&amp;#39;, 0.'>
+<meta property='og:url' content='https://blog.eeho.cn/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/'>
+<meta property='og:site_name' content='@Liulang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Python' /><meta property='article:tag' content='Speedtest' /><meta property='article:tag' content='JS' /><meta property='article:published_time' content='2023-09-10T21:08:05&#43;08:00'/><meta property='article:modified_time' content='2023-09-10T21:08:05&#43;08:00'/><meta property='og:image' content='https://blog.eeho.cn/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/back.png' />
+<meta name="twitter:title" content="Ookla_SpeedTest 搭建">
+<meta name="twitter:description" content="让我仔细看看你的模样 倒数着最后的谢幕时光 我的白马儿呀你慢些跑啊 这一次没有我带你回家 —— 马.福禄寿
+环境准备 Python3 服务器 &amp;lt;系统不限&amp;gt; 域名 SSL证书 &amp;lt;Let&amp;rsquo;s Encrypt 泛域名&amp;gt; Ookla_Speedtest_Flask 点我跳转
+安装部署 拉取项目 建议使用 Git 命令 Clone
+1 git clone https://github.com/L-LizhouYi/Ookla_Speedtest_Flask.git 安装依赖库 1 2 cd Ookla_Speedtest_Flask python3 -m pip install -r requirements.txt 启动服务 启动服务并在浏览器中访问
+访问站点后会自动创建数据库，但由于数据库中没有测速节点，所以页面就会显示无法连接。
+使用 sqlite3 命令添加一条节点，节点可以去项目页面获取。
+1 INSERT INTO &amp;#34;main&amp;#34;.&amp;#34;speedtest_servers&amp;#34;(&amp;#34;id&amp;#34;, &amp;#34;sponsor&amp;#34;, &amp;#34;name&amp;#34;, &amp;#34;host&amp;#34;, &amp;#34;url&amp;#34;, &amp;#34;country&amp;#34;, &amp;#34;cc&amp;#34;, &amp;#34;lat&amp;#34;, &amp;#34;lon&amp;#34;, &amp;#34;distance&amp;#34;, &amp;#34;preferred&amp;#34;, &amp;#34;https_functional&amp;#34;, &amp;#34;force_ping_select&amp;#34;, &amp;#34;show&amp;#34;, &amp;#34;internal&amp;#34;) VALUES (1, &amp;#39;天津电信&amp;#39;, &amp;#39;天津&amp;#39;, &amp;#39;tjrate.tjtele.com.prod.hosts.ooklaserver.net:8080&amp;#39;, &amp;#39;http://tjrate.tjtele.com:8080/speedtest/upload.php&amp;#39;, &amp;#39;China&amp;#39;, &amp;#39;CN&amp;#39;, 0."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog.eeho.cn/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/back.png' />
+    <link rel="shortcut icon" href="/1.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hudaf350c07a76e109dc9d38357cc911c3_206012_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">@Liulang</a></h1>
+            <h2 class="site-description">宁静致远.✍️</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>档案</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#环境准备">环境准备</a></li>
+    <li><a href="#安装部署">安装部署</a>
+      <ol>
+        <li><a href="#拉取项目">拉取项目</a></li>
+        <li><a href="#安装依赖库">安装依赖库</a></li>
+        <li><a href="#启动服务">启动服务</a></li>
+        <li><a href="#申请ssl证书">申请SSL证书</a></li>
+        <li><a href="#安装-speedtest-server">安装 SpeedTest Server</a></li>
+        <li><a href="#添加节点到数据库">添加节点到数据库</a></li>
+      </ol>
+    </li>
+    <li><a href="#文件说明">文件说明</a>
+      <ol>
+        <li><a href="#conmfigini">conmfig.ini</a></li>
+        <li><a href="#speedtestdb">speedtest.db</a></li>
+      </ol>
+    </li>
+    <li><a href="#结尾">结尾</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/">
+                <img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/back_hu06d64d0a28a8cad1c3fa0e289a479bef_124197_800x0_resize_box_3.png"
+                        srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/back_hu06d64d0a28a8cad1c3fa0e289a479bef_124197_800x0_resize_box_3.png 800w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/back_hu06d64d0a28a8cad1c3fa0e289a479bef_124197_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="355" 
+                        loading="lazy"
+                        alt="Featured image of post Ookla_SpeedTest 搭建" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%A5%BD%E8%AE%B0%E6%80%A7%E4%B8%8D%E5%A6%82%E7%83%82%E7%AC%94%E5%A4%B4/" >
+                好记性不如烂笔头
+            </a>
+        
+            <a href="/categories/speedtest/" >
+                Speedtest
+            </a>
+        
+            <a href="/categories/mytools/" >
+                Mytools
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/">Ookla_SpeedTest 搭建</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 10, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>让我仔细看看你的模样 倒数着最后的谢幕时光
+我的白马儿呀你慢些跑啊 这一次没有我带你回家
+—— 马.福禄寿</p>
+</blockquote>
+<h2 id="环境准备">环境准备</h2>
+<ol>
+<li>Python3</li>
+<li>服务器 &lt;系统不限&gt;</li>
+<li>域名</li>
+<li>SSL证书 &lt;Let&rsquo;s Encrypt 泛域名&gt;</li>
+</ol>
+<p>Ookla_Speedtest_Flask <a class="link" href="https://github.com/L-LizhouYi/Ookla_Speedtest_Flask/"  target="_blank" rel="noopener"
+    >点我跳转</a></p>
+<h2 id="安装部署">安装部署</h2>
+<h3 id="拉取项目">拉取项目</h3>
+<p>建议使用 Git 命令 Clone</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/L-LizhouYi/Ookla_Speedtest_Flask.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346342434-50f30fd4-bc2c-452f-b1b7-d7dc467ed56c.png"
+	width="1531"
+	height="689"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346342434-50f30fd4-bc2c-452f-b1b7-d7dc467ed56c_hu9d83d86e3cbd75b86829b2777f271857_85297_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346342434-50f30fd4-bc2c-452f-b1b7-d7dc467ed56c_hu9d83d86e3cbd75b86829b2777f271857_85297_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="222"
+		data-flex-basis="533px"
+	
+></p>
+<h3 id="安装依赖库">安装依赖库</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> Ookla_Speedtest_Flask
+</span></span><span class="line"><span class="cl">python3 -m pip install -r requirements.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="启动服务">启动服务</h3>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346555406-b30942b7-50c9-43b3-ae6b-72bd1fd2dd7d.png"
+	width="1532"
+	height="733"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346555406-b30942b7-50c9-43b3-ae6b-72bd1fd2dd7d_hu4c9d8f14d6e32097d0f54725d740befc_74462_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346555406-b30942b7-50c9-43b3-ae6b-72bd1fd2dd7d_hu4c9d8f14d6e32097d0f54725d740befc_74462_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="209"
+		data-flex-basis="501px"
+	
+></p>
+<p>启动服务并在浏览器中访问</p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346682621-0062b9a6-84e3-4d8f-9c3a-f12edf86357b.png"
+	width="1534"
+	height="783"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346682621-0062b9a6-84e3-4d8f-9c3a-f12edf86357b_huacbd7030cca79b3c6b9f7146e0fe7d19_114476_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346682621-0062b9a6-84e3-4d8f-9c3a-f12edf86357b_huacbd7030cca79b3c6b9f7146e0fe7d19_114476_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="195"
+		data-flex-basis="470px"
+	
+></p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346669231-ba7aa9e4-93c1-408d-b940-7a4a37d11424.png"
+	width="1454"
+	height="1004"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346669231-ba7aa9e4-93c1-408d-b940-7a4a37d11424_hufc841985ab60709ae507f81bb37bc254_62001_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346669231-ba7aa9e4-93c1-408d-b940-7a4a37d11424_hufc841985ab60709ae507f81bb37bc254_62001_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="347px"
+	
+></p>
+<p>访问站点后会自动创建数据库，但由于数据库中没有测速节点，所以页面就会显示无法连接。</p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346768348-7403531f-3ee2-4711-a463-785fc892469d.png"
+	width="1537"
+	height="524"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346768348-7403531f-3ee2-4711-a463-785fc892469d_hu14b179a6b1ff8b16e8bbfa98ef703aaf_84686_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346768348-7403531f-3ee2-4711-a463-785fc892469d_hu14b179a6b1ff8b16e8bbfa98ef703aaf_84686_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="293"
+		data-flex-basis="703px"
+	
+></p>
+<p>使用 sqlite3 命令添加一条节点，节点可以去项目页面获取。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="s2">&#34;main&#34;</span><span class="p">.</span><span class="s2">&#34;speedtest_servers&#34;</span><span class="p">(</span><span class="s2">&#34;id&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;sponsor&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;name&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;host&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;url&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;country&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;cc&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;lat&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;lon&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;distance&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;preferred&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;https_functional&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;force_ping_select&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;show&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;internal&#34;</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;天津电信&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;天津&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;tjrate.tjtele.com.prod.hosts.ooklaserver.net:8080&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;http://tjrate.tjtele.com:8080/speedtest/upload.php&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;China&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CN&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347064837-a4d809e6-fdbf-4e32-8265-1d8b398fed86.png"
+	width="1536"
+	height="244"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347064837-a4d809e6-fdbf-4e32-8265-1d8b398fed86_hu9a428453fcfbe99079094d0c0a7fed2f_39284_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347064837-a4d809e6-fdbf-4e32-8265-1d8b398fed86_hu9a428453fcfbe99079094d0c0a7fed2f_39284_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="629"
+		data-flex-basis="1510px"
+	
+></p>
+<p>添加成功后，再次启动项目，可以看到节点加载成功</p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347184306-e7705cdb-ff61-4576-ada5-04340323e7d2.png"
+	width="1402"
+	height="1003"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347184306-e7705cdb-ff61-4576-ada5-04340323e7d2_hu6fde8fbbc0c5b6c7e0734b4fbdeca32d_58889_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347184306-e7705cdb-ff61-4576-ada5-04340323e7d2_hu6fde8fbbc0c5b6c7e0734b4fbdeca32d_58889_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="139"
+		data-flex-basis="335px"
+	
+></p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347197839-75fef225-76fb-4635-9d6b-350bd32b806f.png"
+	width="1421"
+	height="1017"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347197839-75fef225-76fb-4635-9d6b-350bd32b806f_huc3fe9f48002991f0ac53b23e76f69a55_95218_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347197839-75fef225-76fb-4635-9d6b-350bd32b806f_huc3fe9f48002991f0ac53b23e76f69a55_95218_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="139"
+		data-flex-basis="335px"
+	
+></p>
+<h3 id="申请ssl证书">申请SSL证书</h3>
+<p>使用 Certbot 直接申请一个泛域名证书</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">certbot certonly --standalone -d *.example.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694341878695-4d5d16ed-9fd2-46df-b865-2e9aa62f29ef.png"
+	width="1530"
+	height="856"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694341878695-4d5d16ed-9fd2-46df-b865-2e9aa62f29ef_hu2396acfb677aea6ba74de52a62f77db9_99186_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694341878695-4d5d16ed-9fd2-46df-b865-2e9aa62f29ef_hu2396acfb677aea6ba74de52a62f77db9_99186_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="428px"
+	
+></p>
+<p>根据上面的提示添加一条TXT的解析记录</p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694341848658-00b896bc-fa18-4c57-8e61-2a625d01813a.png"
+	width="1717"
+	height="1074"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694341848658-00b896bc-fa18-4c57-8e61-2a625d01813a_hua1305ac23a87bd5040e675d73495f18f_136766_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694341848658-00b896bc-fa18-4c57-8e61-2a625d01813a_hua1305ac23a87bd5040e675d73495f18f_136766_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="159"
+		data-flex-basis="383px"
+	
+></p>
+<p>配置完成后保存，然后在终端中按回车验证，验证成功后证书文件就会保存到 /etc/letsencrypt/archive/</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Successfully received certificate.
+</span></span><span class="line"><span class="cl">Certificate is saved at: /etc/letsencrypt/live/sundayssr.top/fullchain.pem
+</span></span><span class="line"><span class="cl">Key is saved at:         /etc/letsencrypt/live/sundayssr.top/privkey.pem
+</span></span><span class="line"><span class="cl">This certificate expires on 2023-12-09.
+</span></span><span class="line"><span class="cl">These files will be updated when the certificate renews.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装-speedtest-server">安装 SpeedTest Server</h3>
+<p><a class="link" href="https://install.speedtest.net/ooklaserver/stable/OoklaServer.tgz"  target="_blank" rel="noopener"
+    >官网下载地址</a> 下载SpeedTest的二进制文件到服务器上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://install.speedtest.net/ooklaserver/stable/OoklaServer.tgz
+</span></span><span class="line"><span class="cl">wget https://install.speedtest.net/ooklaserver/ooklaserver.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">tar -xf OoklaServer.tgz 
+</span></span><span class="line"><span class="cl">tar -xf OoklaServer-linux64.tgz 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">chmod +x ooklaserver.sh 
+</span></span><span class="line"><span class="cl">chmod +x OoklaServer
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后把申请到的证书放到当前目录下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cp -r /etc/letsencrypt/archive/sundayssr.top/ ./
+</span></span><span class="line"><span class="cl">mv sundayssr.top/ cert
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>├── cert
+│   ├── cert1.pem
+│   ├── chain1.pem
+│   ├── fullchain1.pem
+│   └── privkey1.pem
+├── OoklaServer
+├── OoklaServer.pid
+├── OoklaServer.properties
+└── ooklaserver.sh</p>
+</blockquote>
+<p>修改 OoklaServer.properties.default 并名为 OoklaServer.properties</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">openSSL.server.certificateFile = cert/fullchain1.pem
+</span></span><span class="line"><span class="cl">openSSL.server.privateKeyFile = cert/privkey1.pem
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过添加域名解析，或者修改路由器的DNS，使 sp.sundayssr.top 可以解析到服务器上</p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694343633325-7724e07d-f025-498b-a81f-16f1fffbb7fc.png"
+	width="1258"
+	height="573"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694343633325-7724e07d-f025-498b-a81f-16f1fffbb7fc_hu864bba525ab0b939c70d1c49dce6e5e7_47107_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694343633325-7724e07d-f025-498b-a81f-16f1fffbb7fc_hu864bba525ab0b939c70d1c49dce6e5e7_47107_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="219"
+		data-flex-basis="526px"
+	
+></p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694343701628-7f7579e9-78c1-4931-b988-5c0eef31b442.png"
+	width="1129"
+	height="635"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694343701628-7f7579e9-78c1-4931-b988-5c0eef31b442_hu0af362587a8ae64cc1a1c3dc9b4f93cf_38964_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694343701628-7f7579e9-78c1-4931-b988-5c0eef31b442_hu0af362587a8ae64cc1a1c3dc9b4f93cf_38964_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>解析成功后启动 SpeedTest Server，并使用 <a class="link" href="https://sp.sundayssr.top:8080"  target="_blank" rel="noopener"
+    >https://sp.sundayssr.top:8080</a> 访问测试</p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694343781115-3a9a0ff2-2d8f-469e-860f-0f1af408ec99.png"
+	width="1302"
+	height="575"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694343781115-3a9a0ff2-2d8f-469e-860f-0f1af408ec99_huf7b6c2bd1106421988fd91b0fe6fa983_24620_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694343781115-3a9a0ff2-2d8f-469e-860f-0f1af408ec99_huf7b6c2bd1106421988fd91b0fe6fa983_24620_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="226"
+		data-flex-basis="543px"
+	
+></p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346063099-dc749727-838b-454e-ad35-ca0923c8d44c.png"
+	width="1716"
+	height="818"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346063099-dc749727-838b-454e-ad35-ca0923c8d44c_huaa61cb699705d5c2170b90d98b310fb0_74005_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694346063099-dc749727-838b-454e-ad35-ca0923c8d44c_huaa61cb699705d5c2170b90d98b310fb0_74005_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="209"
+		data-flex-basis="503px"
+	
+></p>
+<h3 id="添加节点到数据库">添加节点到数据库</h3>
+<p>添加节点同上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="s2">&#34;main&#34;</span><span class="p">.</span><span class="s2">&#34;speedtest_servers&#34;</span><span class="p">(</span><span class="s2">&#34;id&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;sponsor&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;name&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;host&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;url&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;country&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;cc&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;lat&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;lon&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;distance&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;preferred&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;https_functional&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;force_ping_select&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;show&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;internal&#34;</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;本地节点 (内网)&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;内网&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sp.sundayssr.top:8080&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;http://sp.sundayssr.top:8080/speedtest/upload.php&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;China&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CN&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347450353-04c65d29-641a-48c6-8f0c-a2dcc2a9b03a.png"
+	width="1255"
+	height="778"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347450353-04c65d29-641a-48c6-8f0c-a2dcc2a9b03a_hu5764d2bcd8cb738ea092a0fe6827267d_56191_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347450353-04c65d29-641a-48c6-8f0c-a2dcc2a9b03a_hu5764d2bcd8cb738ea092a0fe6827267d_56191_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="161"
+		data-flex-basis="387px"
+	
+></p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347498644-b3564890-c4f4-4bd7-82a3-2e5d445e6d18.png"
+	width="1250"
+	height="762"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347498644-b3564890-c4f4-4bd7-82a3-2e5d445e6d18_hu12b249fcbe77e748d8af41fdffd0b338_66347_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694347498644-b3564890-c4f4-4bd7-82a3-2e5d445e6d18_hu12b249fcbe77e748d8af41fdffd0b338_66347_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="164"
+		data-flex-basis="393px"
+	
+></p>
+<p><img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694348009562-46f3e4cb-a93c-4e73-87e8-d78ab591dff9.png"
+	width="1261"
+	height="925"
+	srcset="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694348009562-46f3e4cb-a93c-4e73-87e8-d78ab591dff9_hufc994e62b9f5fdad89cf9d841f8ed93d_66188_480x0_resize_box_3.png 480w, /p/ookla_speedtest-%E6%90%AD%E5%BB%BA/images/1694348009562-46f3e4cb-a93c-4e73-87e8-d78ab591dff9_hufc994e62b9f5fdad89cf9d841f8ed93d_66188_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="136"
+		data-flex-basis="327px"
+	
+>
+Over !!!</p>
+<h2 id="文件说明">文件说明</h2>
+<h3 id="conmfigini">conmfig.ini</h3>
+<blockquote>
+<p>这个文件用于自定义 web 页面的 服务端口、 标题、 背景颜色等，可以删掉，删掉后默认绑定为localhost的8080 端口。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[app]
+</span></span><span class="line"><span class="cl">host = 0.0.0.0
+</span></span><span class="line"><span class="cl">port = 80
+</span></span><span class="line"><span class="cl">debug = True
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[style]
+</span></span><span class="line"><span class="cl">title = Ookla_Speedtest_Flask
+</span></span><span class="line"><span class="cl">subdomain =  Ookla
+</span></span><span class="line"><span class="cl">rootDomain = speedtest.net
+</span></span><span class="line"><span class="cl">backgroundColor = #ffffff
+</span></span><span class="line"><span class="cl">primaryColor =  #1f1f1f
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="speedtestdb">speedtest.db</h3>
+<blockquote>
+<p>sqlite3数据库文件，存放节点信息和测试历史。会在项目第一次启动访问后自动创建。</p>
+</blockquote>
+<h2 id="结尾">结尾</h2>
+<p>没有工作的一天, 呵 tui
+我去年买了个表, 放在了BLB.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/python/">Python</a>
+        
+            <a href="/tags/speedtest/">Speedtest</a>
+        
+            <a href="/tags/js/">JS</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/">
+        
+        
+            <div class="article-image">
+                <img src="/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/hugo-img.32c54fc74438355beda0fb01c0229453_hu54f74ce482ea03416e0989886f9a9743_55808_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Hugo首安装和一些魔改"
+                        
+                        data-hash="md5-MsVPx0Q4NVvtoPsBwCKUUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo首安装和一些魔改</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/">
+        
+        
+            <div class="article-image">
+                <img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/b.eeb2b91f63e66c4d4748f22c0ccab2b6_hu3b605a4ed6ca89cc85d27885e63c16e0_44967_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Xray-Vless-Nginx-Cf_Wall_方案"
+                        
+                        data-hash="md5-7rK5H2PmbE1HSPIsDMqytg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Xray-Vless-Nginx-Cf_Wall_方案</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 @Liulang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计 • 由 Liulang 用❤️魔改
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+
+
+
+<link rel="stylesheet" type="text/css" href="/fonts/font.css">
+
+<style type="text/css">
+    body {
+         
+    };
+</style>
+
+    </body>
+</html>

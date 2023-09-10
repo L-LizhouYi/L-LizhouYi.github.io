@@ -6,7 +6,31 @@
         <description>Recent content in Tags on @Liulang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 23 Jul 2023 16:54:05 +0800</lastBuildDate><atom:link href="https://blog.eeho.cn/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 10 Sep 2023 21:08:05 +0800</lastBuildDate><atom:link href="https://blog.eeho.cn/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>JS</title>
+        <link>https://blog.eeho.cn/tags/js/</link>
+        <pubDate>Sun, 10 Sep 2023 21:08:05 +0800</pubDate>
+        
+        <guid>https://blog.eeho.cn/tags/js/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Python</title>
+        <link>https://blog.eeho.cn/tags/python/</link>
+        <pubDate>Sun, 10 Sep 2023 21:08:05 +0800</pubDate>
+        
+        <guid>https://blog.eeho.cn/tags/python/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Speedtest</title>
+        <link>https://blog.eeho.cn/tags/speedtest/</link>
+        <pubDate>Sun, 10 Sep 2023 21:08:05 +0800</pubDate>
+        
+        <guid>https://blog.eeho.cn/tags/speedtest/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Cloudflare</title>
         <link>https://blog.eeho.cn/tags/cloudflare/</link>
         <pubDate>Sun, 23 Jul 2023 16:54:05 +0800</pubDate>
@@ -36,14 +60,6 @@
         <pubDate>Sat, 08 Jul 2023 09:42:08 +0800</pubDate>
         
         <guid>https://blog.eeho.cn/tags/hugo/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>JS</title>
-        <link>https://blog.eeho.cn/tags/js/</link>
-        <pubDate>Sat, 08 Jul 2023 09:42:08 +0800</pubDate>
-        
-        <guid>https://blog.eeho.cn/tags/js/</guid>
         <description></description>
         </item>
         
