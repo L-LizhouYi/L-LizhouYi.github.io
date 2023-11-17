@@ -2,46 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>@Liulang</title>
-        <link>https://blog.eeho.cn/</link>
+        <link>-D/</link>
         <description>Recent content on @Liulang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 10 Sep 2023 21:08:05 +0800</lastBuildDate><atom:link href="https://blog.eeho.cn/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Ookla_SpeedTest 搭建</title>
-        <link>https://blog.eeho.cn/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/</link>
-        <pubDate>Sun, 10 Sep 2023 21:08:05 +0800</pubDate>
-        
-        <guid>https://blog.eeho.cn/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/</guid>
-        <description>&lt;img src="https://blog.eeho.cn/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/back.png" alt="Featured image of post Ookla_SpeedTest 搭建" /&gt;让我仔细看看你的模样 倒数着最后的谢幕时光
-我的白马儿呀你慢些跑啊 这一次没有我带你回家
-—— 马.福禄寿
-环境准备 Python3 服务器 &amp;lt;系统不限&amp;gt; 域名 SSL证书 &amp;lt;Let&amp;rsquo;s Encrypt 泛域名&amp;gt; Ookla_Speedtest_Flask 点我跳转
-安装部署 拉取项目 建议使用 Git 命令 Clone
-1 git clone https://github.com/L-LizhouYi/Ookla_Speedtest_Flask.git 安装依赖库 1 2 cd Ookla_Speedtest_Flask python3 -m pip install -r requirements.txt 启动服务 启动服务并在浏览器中访问
-访问站点后会自动创建数据库，但由于数据库中没有测速节点，所以页面就会显示无法连接。
-使用 sqlite3 命令添加一条节点，节点可以去项目页面获取。
-1 INSERT INTO &amp;#34;main&amp;#34;.&amp;#34;speedtest_servers&amp;#34;(&amp;#34;id&amp;#34;, &amp;#34;sponsor&amp;#34;, &amp;#34;name&amp;#34;, &amp;#34;host&amp;#34;, &amp;#34;url&amp;#34;, &amp;#34;country&amp;#34;, &amp;#34;cc&amp;#34;, &amp;#34;lat&amp;#34;, &amp;#34;lon&amp;#34;, &amp;#34;distance&amp;#34;, &amp;#34;preferred&amp;#34;, &amp;#34;https_functional&amp;#34;, &amp;#34;force_ping_select&amp;#34;, &amp;#34;show&amp;#34;, &amp;#34;internal&amp;#34;) VALUES (1, &amp;#39;天津电信&amp;#39;, &amp;#39;天津&amp;#39;, &amp;#39;tjrate.tjtele.com.prod.hosts.ooklaserver.net:8080&amp;#39;, &amp;#39;http://tjrate.tjtele.com:8080/speedtest/upload.php&amp;#39;, &amp;#39;China&amp;#39;, &amp;#39;CN&amp;#39;, 0.</description>
-        </item>
-        <item>
-        <title>Xray-Vless-Nginx-Cf_Wall_方案</title>
-        <link>https://blog.eeho.cn/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/</link>
-        <pubDate>Sun, 23 Jul 2023 16:54:05 +0800</pubDate>
-        
-        <guid>https://blog.eeho.cn/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/</guid>
-        <description>&lt;img src="https://blog.eeho.cn/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/b.png" alt="Featured image of post Xray-Vless-Nginx-Cf_Wall_方案" /&gt;想不想看花海盛开 想不想看燕子归来.
-如果一切都回不来 那么我该为了谁而存在.
-&amp;mdash;&amp;mdash; 我用什么把你留住.福禄寿
-准备工作 域名 国外VPS（推荐Debian） Cloudflare 工具链接 Bt (开心版)
-1 curl -sSO http://io.bt.sy/install/install_panel.sh &amp;amp;&amp;amp; bash install_panel.sh X-UI（Xray管理面板）
-1 bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh) 安装部署 安装Bt面板 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ================================================================== Congratulations! Installed successfully! ================================================================== 外网面板地址: http://2401:c080:1000:42b4:5400:4ff:fe84:393c:28778/076bb078 内网面板地址: http://198.13.44.212:28778/076bb078 username: pg4wtwxk password: 823db350 If you cannot access the panel, release the following panel port [28778] in the security group 若无法访问面板，请检查防火墙/安全组是否有放行面板[28778]端口 ================================================================== Time consumed: 10 Minute!</description>
-        </item>
-        <item>
+        <lastBuildDate>Sat, 08 Jul 2023 09:42:08 +0800</lastBuildDate><atom:link href="-D/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo首安装和一些魔改</title>
-        <link>https://blog.eeho.cn/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</link>
+        <link>-D/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</link>
         <pubDate>Sat, 08 Jul 2023 09:42:08 +0800</pubDate>
         
-        <guid>https://blog.eeho.cn/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</guid>
-        <description>&lt;img src="https://blog.eeho.cn/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/hugo-img.png" alt="Featured image of post Hugo首安装和一些魔改" /&gt;Hugo的安装记录 随笔 在这个喧嚣的时代正如在我的关于中写的那样，变得越来越浮躁，并且 还多愁善感、犹豫不决，害怕失去从而对一些新鲜事物却望而却步，直接敲起了退堂鼓。
+        <guid>-D/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</guid>
+        <description>&lt;img src="/-D/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/BackGround.png" alt="Featured image of post Hugo首安装和一些魔改" /&gt;Hugo的安装记录 随笔 在这个喧嚣的时代正如在我的关于中写的那样，变得越来越浮躁，并且 还多愁善感、犹豫不决，害怕失去从而对一些新鲜事物却望而却步，直接敲起了退堂鼓。
 正如薛之谦 《环》中的写的那样 :
 美若天仙 金山银山 依旧只能饱览寂寞景观 填不满大海 喂不饱深渊 摘不到月亮的人说肝肠寸断 不肯太近 不能太远 不敢跳出迷人的舒适圈 然后无限循环
 Emm 所以我就来写Blog了反正 不会有人看见，嘿嘿&amp;hellip;
@@ -53,18 +24,18 @@ Emm 所以我就来写Blog了反正 不会有人看见，嘿嘿&amp;hellip;
         </item>
         <item>
         <title>档案</title>
-        <link>https://blog.eeho.cn/archives/</link>
+        <link>-D/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.eeho.cn/archives/</guid>
+        <guid>-D/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>关于</title>
-        <link>https://blog.eeho.cn/%E5%85%B3%E4%BA%8E/</link>
+        <link>-D/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.eeho.cn/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>-D/%E5%85%B3%E4%BA%8E/</guid>
         <description>🎑刘浪 😀我： 身穷志短的屌丝青年一枚，目前还患上了 多愁善感 、犹豫不决 等不治之症，最喜欢的人物就是毛爷爷 尤其是在一张红色的纸上。目前最大的愿望是傍上一个富婆，从此走向人生巅峰。(额这个也是要看命的)。
 🌵我的兴趣爱好: 👨‍💻电子产品
 ✍️写博客
@@ -80,20 +51,20 @@ Python 、 Golang 、PHP 、 Java 、 Js
         </item>
         <item>
         <title>链接</title>
-        <link>https://blog.eeho.cn/%E9%93%BE%E6%8E%A5/</link>
+        <link>-D/%E9%93%BE%E6%8E%A5/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.eeho.cn/%E9%93%BE%E6%8E%A5/</guid>
+        <guid>-D/%E9%93%BE%E6%8E%A5/</guid>
         <description>To use this feature, add links section to frontmatter.
 This page&amp;rsquo;s frontmatter:
 1 2 3 4 5 6 7 8 9 links: - title: GitHub description: GitHub is the world&amp;#39;s largest software development platform. website: https://github.com image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png - title: TypeScript description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. website: https://www.typescriptlang.org image: ts-logo-128.jpg image field accepts both local and external images.</description>
         </item>
         <item>
         <title>搜索</title>
-        <link>https://blog.eeho.cn/search/</link>
+        <link>-D/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.eeho.cn/search/</guid>
+        <guid>-D/search/</guid>
         <description></description>
         </item>
         

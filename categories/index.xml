@@ -2,40 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on @Liulang</title>
-        <link>https://blog.eeho.cn/categories/</link>
+        <link>-D/categories/</link>
         <description>Recent content in Categories on @Liulang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 10 Sep 2023 21:08:05 +0800</lastBuildDate><atom:link href="https://blog.eeho.cn/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Mytools</title>
-        <link>https://blog.eeho.cn/categories/mytools/</link>
-        <pubDate>Sun, 10 Sep 2023 21:08:05 +0800</pubDate>
-        
-        <guid>https://blog.eeho.cn/categories/mytools/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Speedtest</title>
-        <link>https://blog.eeho.cn/categories/speedtest/</link>
-        <pubDate>Sun, 10 Sep 2023 21:08:05 +0800</pubDate>
-        
-        <guid>https://blog.eeho.cn/categories/speedtest/</guid>
-        <description></description>
-        </item>
-        <item>
+        <lastBuildDate>Sat, 08 Jul 2023 09:42:08 +0800</lastBuildDate><atom:link href="-D/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>好记性不如烂笔头</title>
-        <link>https://blog.eeho.cn/categories/%E5%A5%BD%E8%AE%B0%E6%80%A7%E4%B8%8D%E5%A6%82%E7%83%82%E7%AC%94%E5%A4%B4/</link>
-        <pubDate>Sun, 10 Sep 2023 21:08:05 +0800</pubDate>
+        <link>-D/categories/%E5%A5%BD%E8%AE%B0%E6%80%A7%E4%B8%8D%E5%A6%82%E7%83%82%E7%AC%94%E5%A4%B4/</link>
+        <pubDate>Sat, 08 Jul 2023 09:42:08 +0800</pubDate>
         
-        <guid>https://blog.eeho.cn/categories/%E5%A5%BD%E8%AE%B0%E6%80%A7%E4%B8%8D%E5%A6%82%E7%83%82%E7%AC%94%E5%A4%B4/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>科学民主富强</title>
-        <link>https://blog.eeho.cn/categories/%E7%A7%91%E5%AD%A6%E6%B0%91%E4%B8%BB%E5%AF%8C%E5%BC%BA/</link>
-        <pubDate>Sun, 23 Jul 2023 16:54:05 +0800</pubDate>
-        
-        <guid>https://blog.eeho.cn/categories/%E7%A7%91%E5%AD%A6%E6%B0%91%E4%B8%BB%E5%AF%8C%E5%BC%BA/</guid>
+        <guid>-D/categories/%E5%A5%BD%E8%AE%B0%E6%80%A7%E4%B8%8D%E5%A6%82%E7%83%82%E7%AC%94%E5%A4%B4/</guid>
         <description></description>
         </item>
         

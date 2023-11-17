@@ -2,70 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.eeho.cn/</loc>
-    <lastmod>2023-09-10T21:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/categories/</loc>
-    <lastmod>2023-09-10T21:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/tags/js/</loc>
-    <lastmod>2023-09-10T21:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/categories/mytools/</loc>
-    <lastmod>2023-09-10T21:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2023-09-10T21:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/post/</loc>
-    <lastmod>2023-09-10T21:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/tags/python/</loc>
-    <lastmod>2023-09-10T21:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/tags/speedtest/</loc>
-    <lastmod>2023-09-10T21:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/categories/speedtest/</loc>
-    <lastmod>2023-09-10T21:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/tags/</loc>
-    <lastmod>2023-09-10T21:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/categories/%E5%A5%BD%E8%AE%B0%E6%80%A7%E4%B8%8D%E5%A6%82%E7%83%82%E7%AC%94%E5%A4%B4/</loc>
-    <lastmod>2023-09-10T21:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/tags/cloudflare/</loc>
-    <lastmod>2023-07-23T16:54:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/tags/nginx/</loc>
-    <lastmod>2023-07-23T16:54:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/tags/xray/</loc>
-    <lastmod>2023-07-23T16:54:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/</loc>
-    <lastmod>2023-07-23T16:54:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/categories/%E7%A7%91%E5%AD%A6%E6%B0%91%E4%B8%BB%E5%AF%8C%E5%BC%BA/</loc>
-    <lastmod>2023-07-23T16:54:05+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.eeho.cn/tags/hugo/</loc>
+    <loc>-D/</loc>
     <lastmod>2023-07-08T09:42:08+08:00</lastmod>
   </url><url>
-    <loc>https://blog.eeho.cn/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</loc>
+    <loc>-D/categories/</loc>
     <lastmod>2023-07-08T09:42:08+08:00</lastmod>
   </url><url>
-    <loc>https://blog.eeho.cn/page/</loc>
+    <loc>-D/tags/hugo/</loc>
+    <lastmod>2023-07-08T09:42:08+08:00</lastmod>
+  </url><url>
+    <loc>-D/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</loc>
+    <lastmod>2023-07-08T09:42:08+08:00</lastmod>
+  </url><url>
+    <loc>-D/tags/js/</loc>
+    <lastmod>2023-07-08T09:42:08+08:00</lastmod>
+  </url><url>
+    <loc>-D/post/</loc>
+    <lastmod>2023-07-08T09:42:08+08:00</lastmod>
+  </url><url>
+    <loc>-D/tags/</loc>
+    <lastmod>2023-07-08T09:42:08+08:00</lastmod>
+  </url><url>
+    <loc>-D/categories/%E5%A5%BD%E8%AE%B0%E6%80%A7%E4%B8%8D%E5%A6%82%E7%83%82%E7%AC%94%E5%A4%B4/</loc>
+    <lastmod>2023-07-08T09:42:08+08:00</lastmod>
+  </url><url>
+    <loc>-D/page/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.eeho.cn/archives/</loc>
+    <loc>-D/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.eeho.cn/%E5%85%B3%E4%BA%8E/</loc>
+    <loc>-D/%E5%85%B3%E4%BA%8E/</loc>
   </url><url>
-    <loc>https://blog.eeho.cn/%E9%93%BE%E6%8E%A5/</loc>
+    <loc>-D/%E9%93%BE%E6%8E%A5/</loc>
   </url><url>
-    <loc>https://blog.eeho.cn/search/</loc>
+    <loc>-D/search/</loc>
   </url>
 </urlset>
