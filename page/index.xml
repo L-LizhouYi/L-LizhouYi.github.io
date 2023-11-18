@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Pages on @Liulang</title>
-        <link>-D/page/</link>
+        <link>https://blog.eeho.cn/page/</link>
         <description>Recent content in Pages on @Liulang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="-D/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.eeho.cn/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>档案</title>
-        <link>-D/archives/</link>
+        <link>https://blog.eeho.cn/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>-D/archives/</guid>
+        <guid>https://blog.eeho.cn/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>关于</title>
-        <link>-D/%E5%85%B3%E4%BA%8E/</link>
+        <link>https://blog.eeho.cn/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>-D/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>https://blog.eeho.cn/%E5%85%B3%E4%BA%8E/</guid>
         <description>🎑刘浪 😀我： 身穷志短的屌丝青年一枚，目前还患上了 多愁善感 、犹豫不决 等不治之症，最喜欢的人物就是毛爷爷 尤其是在一张红色的纸上。目前最大的愿望是傍上一个富婆，从此走向人生巅峰。(额这个也是要看命的)。
 🌵我的兴趣爱好: 👨‍💻电子产品
 ✍️写博客
@@ -35,20 +35,20 @@ Python 、 Golang 、PHP 、 Java 、 Js
         </item>
         <item>
         <title>链接</title>
-        <link>-D/%E9%93%BE%E6%8E%A5/</link>
+        <link>https://blog.eeho.cn/%E9%93%BE%E6%8E%A5/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>-D/%E9%93%BE%E6%8E%A5/</guid>
+        <guid>https://blog.eeho.cn/%E9%93%BE%E6%8E%A5/</guid>
         <description>To use this feature, add links section to frontmatter.
 This page&amp;rsquo;s frontmatter:
 1 2 3 4 5 6 7 8 9 links: - title: GitHub description: GitHub is the world&amp;#39;s largest software development platform. website: https://github.com image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png - title: TypeScript description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. website: https://www.typescriptlang.org image: ts-logo-128.jpg image field accepts both local and external images.</description>
         </item>
         <item>
         <title>搜索</title>
-        <link>-D/search/</link>
+        <link>https://blog.eeho.cn/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>-D/search/</guid>
+        <guid>https://blog.eeho.cn/search/</guid>
         <description></description>
         </item>
         

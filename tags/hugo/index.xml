@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Hugo on @Liulang</title>
-        <link>-D/tags/hugo/</link>
+        <link>https://blog.eeho.cn/tags/hugo/</link>
         <description>Recent content in Hugo on @Liulang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 08 Jul 2023 09:42:08 +0800</lastBuildDate><atom:link href="-D/tags/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 08 Jul 2023 09:42:08 +0800</lastBuildDate><atom:link href="https://blog.eeho.cn/tags/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo首安装和一些魔改</title>
-        <link>-D/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</link>
+        <link>https://blog.eeho.cn/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</link>
         <pubDate>Sat, 08 Jul 2023 09:42:08 +0800</pubDate>
         
-        <guid>-D/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</guid>
-        <description>&lt;img src="/-D/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/BackGround.png" alt="Featured image of post Hugo首安装和一些魔改" /&gt;Hugo的安装记录 随笔 在这个喧嚣的时代正如在我的关于中写的那样，变得越来越浮躁，并且 还多愁善感、犹豫不决，害怕失去从而对一些新鲜事物却望而却步，直接敲起了退堂鼓。
+        <guid>https://blog.eeho.cn/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/</guid>
+        <description>&lt;img src="https://blog.eeho.cn/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/BackGround.png" alt="Featured image of post Hugo首安装和一些魔改" /&gt;Hugo的安装记录 随笔 在这个喧嚣的时代正如在我的关于中写的那样，变得越来越浮躁，并且 还多愁善感、犹豫不决，害怕失去从而对一些新鲜事物却望而却步，直接敲起了退堂鼓。
 正如薛之谦 《环》中的写的那样 :
 美若天仙 金山银山 依旧只能饱览寂寞景观 填不满大海 喂不饱深渊 摘不到月亮的人说肝肠寸断 不肯太近 不能太远 不敢跳出迷人的舒适圈 然后无限循环
 Emm 所以我就来写Blog了反正 不会有人看见，嘿嘿&amp;hellip;
