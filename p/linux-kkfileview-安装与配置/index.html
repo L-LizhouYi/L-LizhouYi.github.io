@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='安装Java 1.8 Jdk1.8 Download下载地址
+上传到Linux后解压，编辑 ~/.bash_profile 或 /etc/profile 配置环境变量即可。
+1 2 3 4 5 6 # 注意路径 export JAVA_HOME=/opt/jdk1.8.0_202/ export PATH=$PATH:$JAVA_HOME/bin #保存后执行 source ~/.bash_profile 安装LibreOffice 7.5.8 首先去LibreOffice的官网下载对应系统的安装包，截止到写这篇文章的时候KkFileview已经在GitHub上更新了4.4.0，描述中说支持了LibreOffice 7.6 但给出的安装脚本中的LibreOffice的版本还是 7.5.3.2。
+上传并解压，然后进入 RPMS 目录下并安装RPM包，如果是Centos或Ubuntu的话可以直接参考Kkfileview的install.sh安装脚本。
+1 2 3 4 # Fedora Linux cd ./RPMS dnf install -y libXinerama cups-libs cairo dnf install ./*rpm -y 1 2 3 4 # Centos Linux yum install -y libSM.x86_64 libXrender.x86_64 libXext.x86_64 yum groupinstall -y &amp;#34;X Window System&amp;#34; yum localinstall -y *.'>
+<title>Linux  KkFileview 安装与配置</title>
+
+<link rel='canonical' href='https://blog.eeho.cn/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/'>
+
+<link rel="stylesheet" href="/scss/style.min.2a19a0292be9078aabf51133bc792f8b36bb3c9ac7e32b071d9ffd33e7689d7e.css"><meta property='og:title' content='Linux  KkFileview 安装与配置'>
+<meta property='og:description' content='安装Java 1.8 Jdk1.8 Download下载地址
+上传到Linux后解压，编辑 ~/.bash_profile 或 /etc/profile 配置环境变量即可。
+1 2 3 4 5 6 # 注意路径 export JAVA_HOME=/opt/jdk1.8.0_202/ export PATH=$PATH:$JAVA_HOME/bin #保存后执行 source ~/.bash_profile 安装LibreOffice 7.5.8 首先去LibreOffice的官网下载对应系统的安装包，截止到写这篇文章的时候KkFileview已经在GitHub上更新了4.4.0，描述中说支持了LibreOffice 7.6 但给出的安装脚本中的LibreOffice的版本还是 7.5.3.2。
+上传并解压，然后进入 RPMS 目录下并安装RPM包，如果是Centos或Ubuntu的话可以直接参考Kkfileview的install.sh安装脚本。
+1 2 3 4 # Fedora Linux cd ./RPMS dnf install -y libXinerama cups-libs cairo dnf install ./*rpm -y 1 2 3 4 # Centos Linux yum install -y libSM.x86_64 libXrender.x86_64 libXext.x86_64 yum groupinstall -y &amp;#34;X Window System&amp;#34; yum localinstall -y *.'>
+<meta property='og:url' content='https://blog.eeho.cn/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/'>
+<meta property='og:site_name' content='@Liulang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Linux' /><meta property='article:tag' content='Java' /><meta property='article:published_time' content='2023-12-03T00:08:05&#43;08:00'/><meta property='article:modified_time' content='2023-12-03T00:08:05&#43;08:00'/><meta property='og:image' content='https://blog.eeho.cn/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/BackGround.png' />
+<meta name="twitter:title" content="Linux  KkFileview 安装与配置">
+<meta name="twitter:description" content="安装Java 1.8 Jdk1.8 Download下载地址
+上传到Linux后解压，编辑 ~/.bash_profile 或 /etc/profile 配置环境变量即可。
+1 2 3 4 5 6 # 注意路径 export JAVA_HOME=/opt/jdk1.8.0_202/ export PATH=$PATH:$JAVA_HOME/bin #保存后执行 source ~/.bash_profile 安装LibreOffice 7.5.8 首先去LibreOffice的官网下载对应系统的安装包，截止到写这篇文章的时候KkFileview已经在GitHub上更新了4.4.0，描述中说支持了LibreOffice 7.6 但给出的安装脚本中的LibreOffice的版本还是 7.5.3.2。
+上传并解压，然后进入 RPMS 目录下并安装RPM包，如果是Centos或Ubuntu的话可以直接参考Kkfileview的install.sh安装脚本。
+1 2 3 4 # Fedora Linux cd ./RPMS dnf install -y libXinerama cups-libs cairo dnf install ./*rpm -y 1 2 3 4 # Centos Linux yum install -y libSM.x86_64 libXrender.x86_64 libXext.x86_64 yum groupinstall -y &amp;#34;X Window System&amp;#34; yum localinstall -y *."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog.eeho.cn/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/BackGround.png' />
+    <link rel="shortcut icon" href="/1.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hudaf350c07a76e109dc9d38357cc911c3_206012_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">@Liulang</a></h1>
+            <h2 class="site-description">宁静致远.✍️</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>档案</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#安装java-18">安装Java 1.8</a></li>
+    <li><a href="#安装libreoffice-758">安装LibreOffice 7.5.8</a></li>
+    <li><a href="#部署kkfileview-43">部署Kkfileview 4.3</a></li>
+    <li><a href="#接入cloudreve预览">接入Cloudreve预览</a>
+      <ol>
+        <li><a href="#解决方案">解决方案：</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+                <img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/BackGround_hua036111726138fa7995f9821dffd9893_92154_800x0_resize_box_3.png"
+                        srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/BackGround_hua036111726138fa7995f9821dffd9893_92154_800x0_resize_box_3.png 800w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/BackGround_hua036111726138fa7995f9821dffd9893_92154_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="476" 
+                        loading="lazy"
+                        alt="Featured image of post Linux  KkFileview 安装与配置" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%A5%BD%E8%AE%B0%E6%80%A7%E4%B8%8D%E5%A6%82%E7%83%82%E7%AC%94%E5%A4%B4/" >
+                好记性不如烂笔头
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">Linux  KkFileview 安装与配置</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 03, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="安装java-18">安装Java 1.8</h2>
+<p><a class="link" href="https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html"  target="_blank" rel="noopener"
+    >Jdk1.8 Download</a>下载地址<!-- raw HTML omitted --></p>
+<p><img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701523136161-1c50d01c-5708-41bf-b5f6-88f4c55ad5fa.png"
+	width="1941"
+	height="1202"
+	srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701523136161-1c50d01c-5708-41bf-b5f6-88f4c55ad5fa_hu471db71801ec624153f7d9f774e6c39e_228073_480x0_resize_box_3.png 480w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701523136161-1c50d01c-5708-41bf-b5f6-88f4c55ad5fa_hu471db71801ec624153f7d9f774e6c39e_228073_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="161"
+		data-flex-basis="387px"
+	
+><!-- raw HTML omitted --></p>
+<p>上传到Linux后解压，编辑 ~/.bash_profile 或 /etc/profile 配置环境变量即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 注意路径</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/opt/jdk1.8.0_202/
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$JAVA_HOME</span>/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#保存后执行</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.bash_profile
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装libreoffice-758">安装LibreOffice 7.5.8</h2>
+<p><img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701521608823-382c4b23-c81d-4e38-8ccd-0e88786ca668.png"
+	width="1740"
+	height="933"
+	srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701521608823-382c4b23-c81d-4e38-8ccd-0e88786ca668_hu917dcb894050ecf414a6792c15dc0ad3_230544_480x0_resize_box_3.png 480w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701521608823-382c4b23-c81d-4e38-8ccd-0e88786ca668_hu917dcb894050ecf414a6792c15dc0ad3_230544_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="186"
+		data-flex-basis="447px"
+	
+><!-- raw HTML omitted --></p>
+<p>首先去LibreOffice的官网下载对应系统的安装包，截止到写这篇文章的时候KkFileview已经在GitHub上更新了4.4.0，描述中说支持了LibreOffice 7.6 但给出的安装脚本中的LibreOffice的版本还是 7.5.3.2。<!-- raw HTML omitted --></p>
+<p><img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701522096285-d7260c3c-306f-4e32-8c22-bd19719232dd.png"
+	width="1489"
+	height="916"
+	srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701522096285-d7260c3c-306f-4e32-8c22-bd19719232dd_hu141df272729530b14af30af7ca258169_832678_480x0_resize_box_3.png 480w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701522096285-d7260c3c-306f-4e32-8c22-bd19719232dd_hu141df272729530b14af30af7ca258169_832678_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="162"
+		data-flex-basis="390px"
+	
+><!-- raw HTML omitted --></p>
+<p>上传并解压，然后进入 RPMS 目录下并安装RPM包，如果是Centos或Ubuntu的话可以直接参考Kkfileview的install.sh安装脚本。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Fedora Linux</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ./RPMS
+</span></span><span class="line"><span class="cl">dnf install -y libXinerama cups-libs cairo
+</span></span><span class="line"><span class="cl">dnf install ./*rpm -y
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Centos Linux</span>
+</span></span><span class="line"><span class="cl">yum install -y libSM.x86_64 libXrender.x86_64  libXext.x86_64
+</span></span><span class="line"><span class="cl">yum groupinstall -y  <span class="s2">&#34;X Window System&#34;</span>
+</span></span><span class="line"><span class="cl">yum localinstall -y *.rpm
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701522529617-8fba3fa2-09a2-4e30-bcbf-16946490e94b.png"
+	width="1489"
+	height="916"
+	srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701522529617-8fba3fa2-09a2-4e30-bcbf-16946490e94b_hued814dd007f201640f5762ac4e00ebc0_849386_480x0_resize_box_3.png 480w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701522529617-8fba3fa2-09a2-4e30-bcbf-16946490e94b_hued814dd007f201640f5762ac4e00ebc0_849386_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="162"
+		data-flex-basis="390px"
+	
+><!-- raw HTML omitted --></p>
+<p>安装完成后在 /opt 路径下会出现libreoffice的文件夹，验证安装。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@pdlinux opt<span class="o">]</span><span class="c1"># ./libreoffice7.5/program/soffice -version</span>
+</span></span><span class="line"><span class="cl">Warning: -version is deprecated.  Use --version instead.
+</span></span><span class="line"><span class="cl">LibreOffice 7.5.8.2 f718d63693263970429a68f568db6046aaa9df01
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="部署kkfileview-43">部署Kkfileview 4.3</h2>
+<p>安装 mvn 并使用Git Clione 项目，本来想装4.3.0 结果今天更新了4.4.0&lt;支持了LibreOffice7.6&gt;，Emmm 无所谓了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /opt
+</span></span><span class="line"><span class="cl">dnf -y install maven git
+</span></span><span class="line"><span class="cl">git clone https://github.com/kekingcn/kkFileView.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#到kkFileView/server目录下</span>
+</span></span><span class="line"><span class="cl">mvn clean install 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编译完成后会在/opt/kkFileView/server/target 下生成 kkFileView-4.4.0-SNAPSHOT.jar <!-- raw HTML omitted -->
+把它复制到/opt/kkFileView/server/src/main/bin 目录下并启动测试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动命令其实是在 startup.sh下复制的 Emmm</span>
+</span></span><span class="line"><span class="cl">java -Dfile.encoding<span class="o">=</span>UTF-8 -Dspring.config.location<span class="o">=</span>../config/application.properties -jar kkFileView-4.4.0-SNAPSHOT.jar
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701526714050-e0d631bf-b9d8-4ba9-8c39-f0cfa49e6d37.png"
+	width="1677"
+	height="1040"
+	srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701526714050-e0d631bf-b9d8-4ba9-8c39-f0cfa49e6d37_hu8e3abbbd5a7d8cb5c601e45437480665_1099189_480x0_resize_box_3.png 480w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701526714050-e0d631bf-b9d8-4ba9-8c39-f0cfa49e6d37_hu8e3abbbd5a7d8cb5c601e45437480665_1099189_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="161"
+		data-flex-basis="387px"
+	
+><!-- raw HTML omitted -->
+<img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701526843779-5fb72dce-223d-49ce-b84a-000b3155e6af.png"
+	width="2560"
+	height="1326"
+	srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701526843779-5fb72dce-223d-49ce-b84a-000b3155e6af_hu1606940a957855388e65a90c6881704f_263329_480x0_resize_box_3.png 480w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701526843779-5fb72dce-223d-49ce-b84a-000b3155e6af_hu1606940a957855388e65a90c6881704f_263329_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="463px"
+	
+></p>
+<h2 id="接入cloudreve预览">接入Cloudreve预览</h2>
+<p>Cloudreve 在接如 KkFilevie的时候会出现不支持该文件类型不支持预览的情况。<!-- raw HTML omitted --></p>
+<p><img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701527465587-d9d0eb1f-7140-4ac4-a2a7-3c1610ed2eac.png"
+	width="1197"
+	height="1031"
+	srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701527465587-d9d0eb1f-7140-4ac4-a2a7-3c1610ed2eac_hua5850a887fbb84f26e1a2249924af337_194234_480x0_resize_box_3.png 480w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701527465587-d9d0eb1f-7140-4ac4-a2a7-3c1610ed2eac_hua5850a887fbb84f26e1a2249924af337_194234_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="116"
+		data-flex-basis="278px"
+	
+><!-- raw HTML omitted -->
+<img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701527561713-c1ad1068-f117-4302-9dea-51373150d4b1.png"
+	width="1430"
+	height="1154"
+	srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701527561713-c1ad1068-f117-4302-9dea-51373150d4b1_hu4387cddcc0e965afd5380538a15c1dc7_128783_480x0_resize_box_3.png 480w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701527561713-c1ad1068-f117-4302-9dea-51373150d4b1_hu4387cddcc0e965afd5380538a15c1dc7_128783_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="123"
+		data-flex-basis="297px"
+	
+><!-- raw HTML omitted --></p>
+<p>原因就是Cloudreve抛出的文件地址不是直链，这就导致链接中不包含文件名和后缀名，致使Kkfikeview无法判断文件的类型。<!-- raw HTML omitted --></p>
+<p><img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701527940481-26353f12-5d4a-4840-a03e-28acfcb4be6e.png"
+	width="1277"
+	height="755"
+	srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701527940481-26353f12-5d4a-4840-a03e-28acfcb4be6e_hu3b572970cd46fb59e97472cbd063ca08_196283_480x0_resize_box_3.png 480w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701527940481-26353f12-5d4a-4840-a03e-28acfcb4be6e_hu3b572970cd46fb59e97472cbd063ca08_196283_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="169"
+		data-flex-basis="405px"
+	
+><!-- raw HTML omitted --></p>
+<p>Kkfikeview 在接入说明中也给出了解决方案，就是再添加一个参数 fullfilename=xxx.xxx，然后将 Base64(http://文件URL?fullfilename=文件.xxx) 提交上去即可。<!-- raw HTML omitted -->尴尬的是 Cloudreve 并没有支持这样的操作，虽然两边的论坛都有提出这个建议。</p>
+<h3 id="解决方案">解决方案：</h3>
+<p>自定义一个接口 /CloudrevePreview 接收 fileurl 和 filename 将其拼接后转为Base64，然后通过 302 跳转到 /onlinePreview 接口下完成请求。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//在src/main/java/cn/keking/web/controller 下创建 CloudreveController.java
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">cn.keking.web.controller</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestParam</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.springframework.web.servlet.view.RedirectView</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.nio.charset.StandardCharsets</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.Base64</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@RestController</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CloudreveController</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/CloudrevePreview&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">redirectToOnlinePreview</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@RequestParam</span><span class="o">(</span><span class="n">required</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span> <span class="n">String</span> <span class="n">fileurl</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@RequestParam</span><span class="o">(</span><span class="n">required</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span> <span class="n">String</span> <span class="n">filename</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">fileurl</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">filename</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">ResponseEntity</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">&#34;Cloudreve API Success&lt;br&gt;Please add the fileurl and filename parameters to the request&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">concatenatedString</span> <span class="o">=</span> <span class="n">fileurl</span> <span class="o">+</span> <span class="s">&#34;&amp;fullfilename=&#34;</span> <span class="o">+</span> <span class="n">filename</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">base64EncodedString</span> <span class="o">=</span> <span class="n">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">concatenatedString</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="n">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">redirectUrl</span> <span class="o">=</span> <span class="s">&#34;/onlinePreview?url=&#34;</span> <span class="o">+</span> <span class="n">base64EncodedString</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">RedirectView</span><span class="o">(</span><span class="n">redirectUrl</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701530654849-05980567-d49a-4ac7-a13a-59cd8c65a7d2.png"
+	width="2314"
+	height="1260"
+	srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701530654849-05980567-d49a-4ac7-a13a-59cd8c65a7d2_hu9da1bb488814ec1755cc1d7de2deb57d_365694_480x0_resize_box_3.png 480w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701530654849-05980567-d49a-4ac7-a13a-59cd8c65a7d2_hu9da1bb488814ec1755cc1d7de2deb57d_365694_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+><!-- raw HTML omitted --></p>
+<p><img src="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701530516992-0d2a9f07-e189-4407-8ad5-b1a92f51ab43.png"
+	width="2278"
+	height="1253"
+	srcset="/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701530516992-0d2a9f07-e189-4407-8ad5-b1a92f51ab43_hu433396d342d79bd5d470d86edcc5eac9_473409_480x0_resize_box_3.png 480w, /p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/images/1701530516992-0d2a9f07-e189-4407-8ad5-b1a92f51ab43_hu433396d342d79bd5d470d86edcc5eac9_473409_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="181"
+		data-flex-basis="436px"
+	
+><!-- raw HTML omitted --></p>
+<p>配置 Cloudreve 的预览接口 http://your_ip:8012/CloudrevePreview?fileurl={$src}&amp;filename={$name}<!-- raw HTML omitted -->使用 mvn spring-boot:run 测试一切正常，重新打包替换掉之前的 kkFileView-4.4.0-SNAPSHOT.jar即可。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/linux/">Linux</a>
+        
+            <a href="/tags/java/">Java</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/">
+        
+        
+            <div class="article-image">
+                <img src="/p/ookla_speedtest-%E6%90%AD%E5%BB%BA/BackGround.03aef16089ce98572c91410c73aa8361_hu06d64d0a28a8cad1c3fa0e289a479bef_124197_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Ookla_SpeedTest 搭建"
+                        
+                        data-hash="md5-A67xYInOmFcskUEMc6qDYQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Ookla_SpeedTest 搭建</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/">
+        
+        
+            <div class="article-image">
+                <img src="/p/xray-vless-nginx-cf_wall_%E6%96%B9%E6%A1%88/BackGround.eeb2b91f63e66c4d4748f22c0ccab2b6_hu3b605a4ed6ca89cc85d27885e63c16e0_44967_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Xray-Vless-Nginx-Cf_Wall_方案"
+                        
+                        data-hash="md5-7rK5H2PmbE1HSPIsDMqytg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Xray-Vless-Nginx-Cf_Wall_方案</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/">
+        
+        
+            <div class="article-image">
+                <img src="/p/hugo%E9%A6%96%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E9%AD%94%E6%94%B9/BackGround.32c54fc74438355beda0fb01c0229453_hu54f74ce482ea03416e0989886f9a9743_55808_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Hugo首安装和一些魔改"
+                        
+                        data-hash="md5-MsVPx0Q4NVvtoPsBwCKUUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo首安装和一些魔改</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 @Liulang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计 • 由 Liulang 用❤️魔改
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+
+
+
+<link rel="stylesheet" type="text/css" href="/fonts/font.css">
+
+<style type="text/css">
+    body {
+         
+    };
+</style>
+
+    </body>
+</html>

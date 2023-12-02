@@ -42,7 +42,7 @@ const handleResponseData = (data) => {
 };
 
 // 请求数据
-const domain = "cmx.0500000.xyz";
+const domain = "m.cmx.im";
 const uid = "110665658065462475";
 const httpUrl = `https://${domain}/api/v1/accounts/${uid}/statuses?limit=1%20||%20%27%27`;
 

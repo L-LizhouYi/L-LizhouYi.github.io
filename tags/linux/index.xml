@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Linux on @Liulang</title>
+        <link>https://blog.eeho.cn/tags/linux/</link>
+        <description>Recent content in Linux on @Liulang</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Sun, 03 Dec 2023 00:08:05 +0800</lastBuildDate><atom:link href="https://blog.eeho.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Linux  KkFileview 安装与配置</title>
+        <link>https://blog.eeho.cn/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</link>
+        <pubDate>Sun, 03 Dec 2023 00:08:05 +0800</pubDate>
+        
+        <guid>https://blog.eeho.cn/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</guid>
+        <description>&lt;img src="https://blog.eeho.cn/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/BackGround.png" alt="Featured image of post Linux  KkFileview 安装与配置" /&gt;安装Java 1.8 Jdk1.8 Download下载地址
+上传到Linux后解压，编辑 ~/.bash_profile 或 /etc/profile 配置环境变量即可。
+1 2 3 4 5 6 # 注意路径 export JAVA_HOME=/opt/jdk1.8.0_202/ export PATH=$PATH:$JAVA_HOME/bin #保存后执行 source ~/.bash_profile 安装LibreOffice 7.5.8 首先去LibreOffice的官网下载对应系统的安装包，截止到写这篇文章的时候KkFileview已经在GitHub上更新了4.4.0，描述中说支持了LibreOffice 7.6 但给出的安装脚本中的LibreOffice的版本还是 7.5.3.2。
+上传并解压，然后进入 RPMS 目录下并安装RPM包，如果是Centos或Ubuntu的话可以直接参考Kkfileview的install.sh安装脚本。
+1 2 3 4 # Fedora Linux cd ./RPMS dnf install -y libXinerama cups-libs cairo dnf install ./*rpm -y 1 2 3 4 # Centos Linux yum install -y libSM.x86_64 libXrender.x86_64 libXext.x86_64 yum groupinstall -y &amp;#34;X Window System&amp;#34; yum localinstall -y *.</description>
+        </item>
+        
+    </channel>
+</rss>
