@@ -6,7 +6,15 @@
         <description>Recent content in Linux on @Liulang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 03 Dec 2023 00:08:05 +0800</lastBuildDate><atom:link href="https://blog.eeho.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 03 Jun 2024 09:42:08 +0800</lastBuildDate><atom:link href="https://blog.eeho.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>ESXI8 核显直通 Fedora_Server_40</title>
+        <link>https://blog.eeho.cn/p/esxi8-%E6%A0%B8%E6%98%BE%E7%9B%B4%E9%80%9A-fedora_server_40/</link>
+        <pubDate>Mon, 03 Jun 2024 09:42:08 +0800</pubDate>
+        
+        <guid>https://blog.eeho.cn/p/esxi8-%E6%A0%B8%E6%98%BE%E7%9B%B4%E9%80%9A-fedora_server_40/</guid>
+        <description>&lt;img src="https://blog.eeho.cn/p/esxi8-%E6%A0%B8%E6%98%BE%E7%9B%B4%E9%80%9A-fedora_server_40/BackGround.png" alt="Featured image of post ESXI8 核显直通 Fedora_Server_40" /&gt;关闭 ESXI 对显卡的抢占 在 ESXI WEB 中开启SSH服务 使用 Putty 连接 ESXI 的 SSH服务 使用命令关闭 1 2 3 4 5 6 7 8 # 查看当前状态 默认为True esxcli system settings kernel list -o vga # 禁用 esxcli system settings kernel set -s vga -v FALSE #启用 esxcli system settings kernel set -s vga -v TRUE 重启ESXI生效 切换成直通 配置 Fedora_Server Linux 查看是否存在 huc guc dcm 低功耗编码固件 1 2 3 4 5 6 root@dmt:~# ls -l /lib/firmware/i915/ehl_guc_69* -rw-r--r--.</description>
+        </item>
+        <item>
         <title>Linux  KkFileview 安装与配置</title>
         <link>https://blog.eeho.cn/p/linux-kkfileview-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</link>
         <pubDate>Sun, 03 Dec 2023 00:08:05 +0800</pubDate>
